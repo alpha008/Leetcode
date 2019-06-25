@@ -1,0 +1,2 @@
+# leetcode_test
+在linux操作系统中使用makefile练习leetcode题目
