@@ -37,3 +37,24 @@ clean:
 #-Wall选项意思是编译后显示所有警告。
 
 #-W选项类似-Wall，会显示警告，但是只显示编译器认为会出现错误的警告。
+
+#例子5：
+#PROGS =	TwoSum01 TwoSum02
+#CC=g++
+#all:	${PROGS}
+#
+#TwoSum01:	TwoSum01.o
+#		${CC}  -o $@ TwoSum01.o 
+#TwoSum02:	TwoSum02.o
+#		${CC}  -o $@ TwoSum02.o 
+		
+
+
+
+
+
+
+
+
+
+
