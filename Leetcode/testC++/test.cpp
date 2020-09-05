@@ -29,10 +29,6 @@ vector<vector<int>> getdp(string s1,string s2)
 
 
 }
-
-
-
-
 int main(){
 
     //int array[] = {2,1,5,3,6,4,8,9,7};

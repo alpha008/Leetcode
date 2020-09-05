@@ -1,16 +1,15 @@
 1. Pattern: Sliding window，滑动窗口类型
 
-
 2. Pattern: two points, 双指针类型
     373. Partition Array by Odd and Even
-    
+
 3. Pattern: Fast & Slow pointers, 快慢指针类型
 
 4. Pattern: Merge Intervals，区间合并类型
 
 5. Pattern: Cyclic Sort，循环排序
 
-5. Pattern: Cyclic Sort，循环排序
+6. Pattern: In-place Reversal of a LinkedList，链表翻转
 
 7. Pattern: Tree Breadth First Search，树上的BFS
 
@@ -30,7 +29,6 @@
 13. Pattern: K-way merge，多路归并
 
 14. Pattern: 0/1 Knapsack (Dynamic Programming)，0/1背包类型
-
 
 15. Pattern: Topological Sort (Graph)，拓扑排序类型
 

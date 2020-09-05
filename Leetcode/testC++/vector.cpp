@@ -11,16 +11,16 @@ void printVector(vector<int>vectorPrint){
 	}
 	cout << endl;
 }
-int main02()
+int main()
 {
 	//1.带参数的构造函数
 	cout << "1.带参数的构造函数" << endl;
 	int a[] = { 0, 1, 2, 3, 4 };
 	int b[] = { 5, 6, 7, 8, 9 ,10 };
-	vector<int>vectorA(a, a + 5);//可以将相对应的内存地址连续的赋值给容器，区间是左闭右开的原则
+	vector<int>vectorA(a, a + 5);   //可以将相对应的内存地址连续的赋值给容器，区间是左闭右开的原则
 	vector<int>vectorB(vectorA.begin(), vectorA.end());//本质上还是两个地址区间的内容进行赋值
-	vector<int>vectorC(3, 9);//构造函数将3个9进行拷贝赋值
-	vector<int>vectorD(vectorA);//两个类型相同的容器进行拷贝赋值
+	vector<int>vectorC(3, 9);    //构造函数将3个9进行拷贝赋值
+	vector<int>vectorD(vectorA); //两个类型相同的容器进行拷贝赋值
 	printVector(vectorA);
 	printVector(vectorB);
 	printVector(vectorC);

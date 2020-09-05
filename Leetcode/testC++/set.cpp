@@ -3,7 +3,7 @@
 #include<string>
 #include<algorithm>
 #include<functional>//仿函数
-//set是一个集合，变量内容是唯一的，其中值的顺序是按照规则排列的
+//set是一个集合，key是唯一的，其中值的顺序是按照规则排列的
 //在插入的时候要删除，要删除原有数据在插入。不支持直接存取操作，不能指定插入位置
 using namespace std;
 int testSet01()
