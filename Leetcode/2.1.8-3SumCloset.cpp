@@ -12,6 +12,7 @@ For example, given array S = {-1 2 1 -4}, and target = 1.
 
 **********************************************************************************************************/
 #include<iostream>
+#include<vector>
 #include<unordered_map>
 using namespace std;
 

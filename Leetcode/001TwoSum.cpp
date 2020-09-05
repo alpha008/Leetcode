@@ -6,6 +6,7 @@ Example:
 Given nums = [2, 7, 11, 15], target = 9,
 Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
+如果有顺序的话，那么就可以两头指针往中间靠
 **********************************************************************************************************/
 #include<iostream>
 #include<unordered_map>
@@ -19,13 +20,32 @@ public:
 		{
 			if (indices.find(target - nums[i]) != indices.end()) 
 			{
-				return{ indices[target - nums[i]], i };
+				return { indices[target - nums[i]], i };
 			}
-			indices[nums[i]] = i;
+			indices[nums[i]] = i;// value + index  根据值找下标
 		}
-		return{};
+		return {}; // 最后没找到返回空
 	}
 };
+int main()
+{
+	vector<int>nums = { 2, 7, 11, 15 };
+	int target = 9;
+	Solution1 a;
+	vector<int>nums1 = a.twoSum(nums, target);
+	for (auto i : nums1)
+	{
+		cout << i;
+	}
+	return 0;
+}
+
+
+
+
+
+
+
 class Solution2 {
 public:
 	vector<int> twoSum(vector<int>& nums, int target) {
@@ -45,20 +65,6 @@ public:
 		return res;
 	}
 };
-int main()
-{
-	vector<int>nums = { 2, 7, 11, 15 };
-	int target = 9;
-	Solution1 a;
-	vector<int>nums1=a.twoSum(nums, target);
-	for (auto i : nums1)
-	{
-		cout << i;
-	}
-	return 0;
-}
-
-
 
 
 
