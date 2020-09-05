@@ -25,10 +25,13 @@ using namespace std;
 12. 合并k个有序链表，并返回头指针
  *************************************************************************************************/
 struct ListNode {
-    ListNode(int x) : val(x), next(nullptr) { }
+    ListNode(int x)
+    {
+        this->val = x;
+        this->next = nullptr;
+    }
     int val;
     ListNode *next;
-    
 };
 /**********************************************************************************************************
 1.两个链表求和
@@ -95,6 +98,7 @@ unsigned int GetListLength(ListNode * pHead)
 }
 /**********************************************************************************************************
 4.将单链表反转
+  链表反转时，需要前后两个节点来记录节点信息；与删除节点时，非常相似
 从头到尾遍历原链表，每遍历一个结点，将其摘下放在新链表的最前端。注意链表为空和只有一个结点的情况。
 **********************************************************************************************************/
 ListNode * ReverseList(ListNode * pHead) 
@@ -211,10 +215,10 @@ bool LinkListishaveCircle(ListNode *head)
 ListNode* findLoopPort(ListNode *head)
  {
      //如果head为空，或者为单结点，则不存在环
-      if(head == NULL || head->next == NULL) return NULL;
+     if(head == NULL || head->next == NULL) return NULL;
      ListNode *slow,*fast;
      slow = fast = head;
-     //先判断是否存在环(上一个部分就不再给出解释了!!!!)
+     //先判断是否存在环
      while(fast != NULL &&  fast->next != NULL)
      {
          fast = fast->next->next;
@@ -224,7 +228,6 @@ ListNode* findLoopPort(ListNode *head)
      }
      if(fast != slow)  
         return NULL;    //不存在环直接返回
- 	//现在是存在环的情况!!!
      fast = head;                //快指针从头开始走
      while(fast !=  slow)            //两者相遇即为入口点
      {
@@ -238,12 +241,12 @@ ListNode* findLoopPort(ListNode *head)
 如果两个链表相交于某一节点，那么在这个相交节点之后的所有节点都是两个链表所共有的。也就是说，
 如果两个链表相交，那么最后一个节点肯定是共有的。先遍历第一个链表，记住最后一个节点，然后遍历第二个链表，
 到最后一个节点时和第一个链表的最后一个节点做比较，如果相同，则相交，否则不相交。
-时间复杂度为O(len1+len2)，因为只需要一个额外指针保存最后一个节点地址，空间复杂度为O(1)。参考代码如下：
+时间复杂度为O(len1+len2)，因为只需要一个额外指针保存最后一个节点地址，空间复杂度为O(1)。
 **********************************************************************************************************/
 bool IsIntersected(ListNode * pHead1, ListNode * pHead2) 
-{ 
-        if(pHead1 == NULL || pHead2 == NULL) 
-                return false; 
+{ // 判断两个尾指针是否相等
+    if(pHead1 == NULL || pHead2 == NULL) 
+          return false; 
     ListNode * pTail1 = pHead1; 
     while(pTail1->next != NULL) 
         pTail1 = pTail1->next; 
@@ -257,7 +260,7 @@ bool IsIntersected(ListNode * pHead1, ListNode * pHead2)
 对第一个链表遍历，计算长度len1，同时保存最后一个节点的地址。
 对第二个链表遍历，计算长度len2，同时检查最后一个节点是否和第一个链表的最后一个节点相同，若不相同，不相交，结束。
 两个链表均从头节点开始，假设len1大于len2，那么将第一个链表先遍历len1-len2个节点，
-此时两个链表当前节点到第一个相交节点的距离就相等了，然后一起向后遍历，知道两个节点的地址相同。
+此时两个链表当前节点到第一个相交节点的距离就相等了，然后一起向后遍历，直到两个节点的地址相同。
 **********************************************************************************************************/
 ListNode* GetFirstCommonNode(ListNode * pHead1, ListNode * pHead2) 
 { 
@@ -296,12 +299,12 @@ ListNode* GetFirstCommonNode(ListNode * pHead1, ListNode * pHead2)
         while(k--) 
             pNode2 = pNode2->next; 
     } 
-    while(pNode1 != pNode2) 
+    while(pNode1 != pNode2)  // 两个指针处于同级别的起始位置，然后在同时往下面走，这时就可以了
     { 
         pNode1 = pNode1->next; 
         pNode2 = pNode2->next; 
     } 
-        return pNode1; 
+    return pNode1; 
 }
 /**********************************************************************************************************
 12.合并k个有序链表，并返回头指针
@@ -347,6 +350,39 @@ void createlist(ListNode *phead,vector<int> nums)
         pnewNode->next = nullptr;
         ptemp = pnewNode;
     }
+}
+/*************************************************************************************************
+添加节点，添加到尾部，需要遍历链表
+ *************************************************************************************************/
+void addNode(ListNode *phead,int value)
+{
+    ListNode * ptmp = phead;
+    ListNode *pNewNode = new ListNode(value);
+    if(phead == NULL)
+        phead = pNewNode;
+    else
+    {
+        while(ptmp->next != NULL) {
+            ptmp = ptmp->next;
+        }
+        ptmp->next = pNewNode;
+    }
+}
+/*************************************************************************************************
+删除节点时，需要记录上个节点的信息
+ *************************************************************************************************/
+void delNode(ListNode *phead,int value)
+{
+    ListNode * ptmp = phead;
+    if(phead == NULL) return ;
+    ListNode * prev;
+    ListNode * pcur = phead;
+    while(pcur->val != value)
+    {
+        prev = pcur;//记录要删除结点的上一个结点
+        pcur = pcur->next ;
+    }
+    prev -> next = pcur->next; 
 }
 /*************************************************************************************************
  遍历链表
