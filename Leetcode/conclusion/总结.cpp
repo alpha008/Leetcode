@@ -1,3 +1,14 @@
+#include<iostream>
+#include<string>
+#include<vector>
+#include<set>
+#include<unordered_set>
+#include<map>
+#include<unordered_map>
+#include<algorithm>
+using namespace std;
+
+
 1. Pattern: Sliding window，滑动窗口类型
 
 2. Pattern: two points, 双指针类型
