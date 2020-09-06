@@ -1,70 +1,15 @@
-/**********************************************************************************************************
-1. Two Sum
-Given an array of integers, return indices of the two numbers such that they add up to a specific target.
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
-Example:
-Given nums = [2, 7, 11, 15], target = 9,
-Because nums[0] + nums[1] = 2 + 7 = 9,
-return [0, 1].
-如果有顺序的话，那么就可以两头指针往中间靠
-**********************************************************************************************************/
 #include<iostream>
-#include<unordered_map>
+#include<string>
 #include<vector>
+#include<set>
+#include<unordered_set>
+#include<map>
+#include<unordered_map>
+#include<algorithm>
 using namespace std;
-class Solution1 {
-public:
-	vector<int> twoSum(vector<int>& nums, int target) {
-		unordered_map<int, int> indices;
-		for (int i = 0; i < nums.size(); i++) 
-		{
-			if (indices.find(target - nums[i]) != indices.end()) 
-			{
-				return { indices[target - nums[i]], i };
-			}
-			indices[nums[i]] = i;// value + index  根据值找下标
-		}
-		return {}; // 最后没找到返回空
-	}
-};
-int main()
-{
-	vector<int>nums = { 2, 7, 11, 15 };
-	int target = 9;
-	Solution1 a;
-	vector<int>nums1 = a.twoSum(nums, target);
-	for (auto i : nums1)
-	{
-		cout << i;
-	}
-	return 0;
-}
 
+#if 0
 
-
-
-
-
-
-class Solution2 {
-public:
-	vector<int> twoSum(vector<int>& nums, int target) {
-		unordered_map<int, int> m;
-		vector<int> res;
-		for (int i = 0; i < nums.size(); ++i) {
-			m[nums[i]] = i;
-		}
-		for (int i = 0; i < nums.size(); ++i) {
-			int t = target - nums[i];
-			if (m.count(t) && m[t] != i) {
-				res.push_back(i);
-				res.push_back(m[t]);
-				break;
-			}
-		}
-		return res;
-	}
-};
 
 
 /**********************************************************************************************************
@@ -79,10 +24,7 @@ For example, given array S = {-1 2 1 -4}, and target = 1.
 先排序，然后左右夹逼，复杂度 O(n2)。
 
 **********************************************************************************************************/
-#include<iostream>
-#include<vector>
-#include<unordered_map>
-using namespace std;
+
 
 class Solution{
 public:
@@ -109,89 +51,8 @@ public:
                 }
             }
             return result;
-       }
-};
+    
 
-
-
-/**********************************************************************************************************
-Given an array and a value, remove all instances of that value in place and return the new length.
-e order of elements can be changed. It doesn’t matter what you leave beyond the new length.
-
-
-**********************************************************************************************************/
-
-
-
-#include<iostream>
-#include<unordered_map>
-using namespace std;
-
-class Solution{
-    int removeElement(int A[],int n,int elem){
-        int index = 0;
-        for(int i = 0 ;i < n;i++){
-            if(A[i] != elem){
-                A[index++] = A[i];
-            }
-        }
-        return index;
-    }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/**********************************************************************************************************
-Given an array of integers, every element appears twice except for one. Find that single one.
-Note: Your algorithm should have a linear runtime complexity. Could you implement it without using
-extra memory? 
-**********************************************************************************************************/
-#include<iostream>
-#include<algorithm>
-using namespace std;
-
-class Solution{
-public:
-    int singleNumber(int A[], int n ){
-        int x = A[0];
-        for(int i = 1;i < n;i ++){
-            x ^= A[i];
-        }
-        return x;
-    }
-
-};
-
-
-class Solution{
-    int singleNumber(int A [ ], int n,int k){
-        const int W = sizeof(int) * 8;
-        int count[W];
-        fill_n(&count[0], W, 0);
-        for(int i = 0;i  < n; i++){
-            for(int j = 0;j < W; j++){
-                count[j] += (A[i] >> j) & 1;
-                count[j] % = k;//统计出现k次的
-            }
-        }
-        int result = 0;
-        for(int i = 0;i < W;i++){
-            result +=(count[i] << i);
-        }
-        return result;
-    }
-
-};
 
 /**********************************************************************************************************
 描述
@@ -279,25 +140,7 @@ public:
     }
 };
 
-/**********************************************************************************************************
-Given two sorted integer arrays A and B, merge B into A as one sorted array.
-Note: You may assume that A has enough space to hold additional elements from B. e number of
-elements initialized in A and B are m and n respectively
 
-**********************************************************************************************************/
-
-class Solution{
-public:
-    void merge(int A[],int m,int B[], int n){
-        int ia = m - 1, ib = n - 1, icur = m + n - 1;
-        while(ia >=0 && ib >=0){
-            A[icur--] = A[ia] >= B[ib] ? A[ia--] : B[ib--];
-        }
-        while(ib >= 0){
-            A[icur--] = B[ib--];
-        }
-    }
-};
 
 
 /**********************************************************************************************************
@@ -377,6 +220,150 @@ private:
         }
     }
 };
+
+
+
+
+
+#endif
+/**********************************************************************************************************
+1. Two Sum
+2. 删除数组中为target的元素
+3. 删除数组中重复的元素，允许重复k次
+4. 一个数字出现奇数次，其他出现偶数次
+5. single element,appearce k  others
+**********************************************************************************************************/
+/**********************************************************************************************************
+1. Two Sum
+假设解唯一，并且元素没有重复
+Given nums = [2, 7, 11, 15], target = 9,
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1]. 使用哈希表进行缓存，降低时间复杂度
+**********************************************************************************************************/
+vector<int> findtwoSum(vector<int>& nums, int target) {
+    unordered_map<int, int> indices;        // 哈希表无序
+    for (int index = 0; index < nums.size(); index++) 
+    {
+        if (indices.find(target - nums[index]) != indices.end()) 
+        {
+            return { indices[target - nums[index]], index };
+        }
+        indices[nums[index]] = index;// value + index  根据值找下标
+    }
+    return {}; // 最后没找到返回空
+}
+/**********************************************************************************************************
+2. 删除数组中为target的元素
+Given an array and a value, remove all instances of that value in place and return the new length.
+order of elements can be changed. It doesn’t matter what you leave beyond the new length
+删除元素后需要调整数组大小，或者允许后面的值不动，在打印时，打印前index个
+**********************************************************************************************************/
+int removeElement(vector<int> &nums,int elem){
+    cout << "removeElement start" << endl;
+    int index = 0;
+    for(int i = 0 ;i < nums.size();i++){
+        if(nums[i] != elem){
+            nums[index++] = nums[i];
+        }
+    }
+    nums.resize(index);
+    return index;
+}
+/**********************************************************************************************************
+3. 删除数组中重复的元素，允许重复k次    
+    删除元素后需要调整数组大小，或者允许后面的值不动，在打印时，打印前index个
+**********************************************************************************************************/
+void removekElement(vector<int> &nums,int k){
+    cout << "removeElement 允许重复k次" << "k = " << k <<  endl;
+    int index = 0;
+    int count = 1;
+    for(int i = 1 ;i < nums.size();i++){
+        if(nums[i] != nums[index]){
+            count = 1;  // 原地赋值
+            nums[++index] = nums[i];  //前置++表达式的值，先加完然后在使用；最后index = 加之后的值
+        }
+        else{
+            if(count < k) // 判断的是已经统计到的，就算当前相等，那也得统计完在说
+            {
+                count++;
+                nums[++index] = nums[i];
+            }
+        }
+    }
+    nums.resize(index+1);
+}
+/**********************************************************************************************************
+4. 一个数字出现奇数次，其他出现偶数次
+    完全是数学问题，异或剩下的最后一个元素
+**********************************************************************************************************/
+int singleNumber(vector<int> nums){
+    int x = nums[0];
+    for(int index = 1;index < nums.size();index++){
+        x ^= nums[index];
+    }
+    return x;
+}
+/**********************************************************************************************************
+5. single element,appearce k  others
+**********************************************************************************************************/
+int singleNumber(vector<int> &nums,int k){
+    const int W = sizeof(int) * 8;
+    int count[W];
+    fill_n(&count[0], W, 0); // 将该数组所有bit位置填充为0
+    for(int i = 0 ;i < nums.size(); i++){
+        for(int j = 0;j < W; j++){
+            count[j] += (nums[i] >> j) & 0x1;
+            count[j] %= k; //假如出现k次，那么这个bit位将会变成0
+        }
+    }
+    int result = 0;
+    for(int i = 0;i < W;i++){
+        result += (count[i] << i);
+    }
+    return result;
+}
+void printvector(vector<int>&nums)
+{
+    cout<< "printvector: " ;
+    for (auto i : nums)
+	{
+		cout << i << " " ;
+	}
+    cout << endl;
+}
+int main()
+{  
+    vector<int> result;
+    //1. 找到和为sum的两个数字
+	vector<int>nums = { 2, 7, 11, 15 }; 
+    printvector(nums);
+	result = findtwoSum(nums, 9);
+    printvector(result);
+    //2. 删除数组中为target的元素
+    vector<int>nums2 = { 2, 7, 7, 7, 11, 15 }; 
+    printvector(nums2);
+    removeElement(nums2,7);
+    printvector(nums2);
+    // 3. 删除数组中重复元素，允许重复k次
+    vector<int>nums3 = { 2, 7, 7, 7, 8, 8, 8, 8, 11, 15 }; 
+    printvector(nums3);
+    removekElement(nums3,2);
+    printvector(nums3);
+    // 4. 一个数字出现奇数次，其他出现偶数次
+    vector<int>nums4 = { 2, 7,  7, 8,  8, 11, 11 };
+    printvector(nums4);
+    cout << "singleNumber: " << singleNumber(nums4) << " " << endl;
+    // 5. single element,appearce k  others
+    vector<int>nums5 = { 2, 2, 2, 7, 8, 8, 8 , 11, 11, 11 };
+    cout << "k singleNumber: " << singleNumber(nums5,3) << " " << endl;
+    
+
+
+	return 0;
+}
+
+
+
 
 
 
