@@ -11,7 +11,7 @@ using namespace std;
 /***********************************************************************************************
 1. Longest Substring Without Repeating Characters
 2. 从给定字符串中找出包含目标串的最小子串
-3. 滑动窗口的最大值
+3.  滑动窗口的最大值
 ***********************************************************************************************/
 void printvector(vector<int>&nums)
 {
@@ -133,8 +133,8 @@ vector<int> maxSlidingWindow(vector<int>& nums, int k) {
         //2.窗口不为空并且下标i表示的元素大于window尾部下标表示的元素，删除尾部下标，保证窗口的头部为最大值
         while(!window.empty() && nums[i]>nums[window.back()])
             window.pop_back();  
-        window.push_back(i);   //此时窗口的头部为最大值
-        //3.将结果更新到结果集中
+        window.push_back(i);
+        //3.将结果更新到结果集中，如果不大于也要记录下来，但是始终保持头部最大
         result.push_back(nums[window.front()]);//将窗口的最大值添加到result中
     }
     
