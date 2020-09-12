@@ -320,6 +320,84 @@ private:
     }
 
 };
+
+/**********************************************************************************************************
+12. 给定中序和后序遍历重建二叉树
+**********************************************************************************************************/
+class SolutionBuildTreeA {
+public:
+    TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder) 
+    {
+        return buildTree_t(inorder, 0, inorder.size()-1, postorder, 0, postorder.size()-1);
+    }
+
+    TreeNode *buildTree_t(vector<int> &inorder,int iLeft,int iRight, vector<int> &postorder,int pLeft,int pRight)
+    {
+        if(iLeft > iRight || pLeft > pRight)
+            return NULL;
+
+        TreeNode* cur = new TreeNode(postorder[pRight]);
+        int i = 0;
+        for(i = iLeft;i < inorder.size(); i++)
+        {
+            if(inorder[i] == cur->val)
+                break;
+        }
+        cur->left = buildTree_t(inorder, iLeft, i-1, postorder, pLeft, pLeft+i-iLeft-1);
+        cur->right = buildTree_t(inorder, i+1, iRight, postorder, pLeft+i-iLeft, pRight-1);
+        return cur;
+    }
+};
+/**********************************************************************************************************
+13. 给定前序和中序遍历重建二叉树
+**********************************************************************************************************/
+class SolutionBuildTreeBB {
+public:
+    TreeNode* generate1(vector<int>& preorder, vector<int>& inorder, int preleft, int preright, int inleft, int inright)
+    {
+        if (preleft > preright || inleft > inright)
+            return nullptr;
+            vector<int>::iterator iter = find(inorder.begin(),inorder.end(),preorder[preleft]);
+            int index = iter - inorder.begin();
+            TreeNode* root = new TreeNode(preorder[preleft]);//根节点
+            root->left = generate1(preorder,inorder,preleft+1,preleft+index-inleft,inleft,index-1);
+            root->right = generate1(preorder, inorder,preright-inright+index+1 ,preright , index + 1, inright);
+            return root;
+    }
+        TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
+            int len = preorder.size();
+            TreeNode* root = generate1(preorder, inorder, 0, len - 1, 0, len - 1);
+            return root;
+        }
+};
+class SolutionBuildTreeB {
+public:
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        return buildTree_t(preorder,inorder,0,inorder.size()-1,0);
+    }
+    /*其中
+    inorder_start是中序历遍序列的左端点
+    i是中序历遍中根节点的位置
+    inorder_end是中序历遍的序列的右端点
+    */
+    TreeNode* buildTree_t(vector<int>& preorder,vector<int>& inorder, int inorder_start, int inorder_end, int pre_root_index)
+    {
+        if(inorder_start == inorder_end) 
+            return new TreeNode(preorder[pre_root_index]);
+        if(inorder_start > inorder_end) return NULL;
+        int root_value = preorder[pre_root_index];
+        TreeNode* root = new TreeNode(root_value);
+        int i = 0;
+        for( ;i<inorder.size(); ++i)
+        {
+            if(inorder[i]==root_value)
+                break;
+        }
+        root->left = buildTree_t(preorder, inorder, inorder_start, i-1, pre_root_index+1);
+        root->right = buildTree_t(preorder, inorder, i+1, inorder_end, pre_root_index+i-inorder_start+1);
+        return root;
+    }
+};
 int main()
 {
     vector<vector<int>> result;
@@ -353,6 +431,33 @@ int main()
     cout << "hasPath  "<<endl;
     result = calpath.pathSum(pNode,4);
     printMatrix(result);
+    
+    vector<int> preorder = {5,9,67,32};
+    vector<int> inorder = {9,5,32,67};
+    vector<int> postorder = {9,32,67,5};
+
+    //12. 给定中序和后序遍历重建二叉树
+    cout << "Build Tree in post" << endl;
+    SolutionBuildTreeA buildA;
+    TreeNode * TreeNodeRootA = buildA.buildTree(inorder,postorder);
+    //前
+    cout << "PreOrderTraverse  :";   PreOrderTraverse(TreeNodeRootA);  cout << endl;
+    //中
+    cout << "InOrderTraverse   :";    InOrderTraverse(TreeNodeRootA);  cout << endl;
+    //后   
+    cout << "PostOrderTraverse :";  PostOrderTraverse(TreeNodeRootA);  cout << endl;
+
+    // 13. 给定前序和中序遍历重建二叉树
+    cout << "Build Tree pre in" << endl;
+    SolutionBuildTreeBB buildB;
+    TreeNode * TreeNodeRootB = buildB.buildTree(preorder,inorder);
+    //前
+    cout << "PreOrderTraverse  :";  PreOrderTraverse(TreeNodeRootB);  cout << endl; 
+    //中
+    cout << "InOrderTraverse   :";   InOrderTraverse(TreeNodeRootB);  cout << endl;
+    //后   
+    cout << "PostOrderTraverse :"; PostOrderTraverse(TreeNodeRootB);  cout << endl;
+    cout << endl;
     return 0;
 }
 

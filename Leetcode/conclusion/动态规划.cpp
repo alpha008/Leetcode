@@ -210,7 +210,7 @@ For example, given the following triangle
 [6,5,7],
 [4,1,8,3]
 ]
-e minimum path sum from top to boom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
+minimum path sum from top to boom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
 Note: Bonus point if you are able to do this using only O(n) extra space, where n is the total number
 of rows in the triangle.      
 **********************************************************************************************************/
@@ -220,6 +220,7 @@ int minimum(vector<vector<int>> & triangle){
             triangle[i][j] = min(triangle[i + 1][j] , triangle[i + 1][j + 1]);
         }
     } 
+    // 从下往上走，下面一层选较小的值，往上走
     return triangle[0][0];
 }
 
