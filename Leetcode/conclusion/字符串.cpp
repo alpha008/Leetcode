@@ -1,37 +1,24 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <set>
+#include <unordered_set>
+#include <map>
+#include <unordered_map>
+#include <algorithm>
+#include <deque>
+using namespace std;
+
 /**********************************************************************************************************
-3.1 Valid Palindrome
 
-描述
-Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring
-cases.
-For example,
-”A man, a plan, a canal: Panama” is a palindrome.
-”race a car” is not a palindrome.
-Note: Have you consider that the string might be empty? is is a good question to ask during an
-interview.
-For the purpose of this problem, we define empty string as valid palindrome   
 **********************************************************************************************************/
-class Solution{
-public:
-    bool isPalindrome(string s){
-        tranform(s.begin(),s.end(),s.begin(),::tolower);
-        auto left = s.begin(), right = prev(s.end());
-        while(left < right){
-            if(!::isalnum(*left)) ++left;
-            else if(!::isalnum(*right)) ++right;
-            else if(*left != *right) return false;
-        }
-        return true;
-    }
-};
 
+#if 0
 /**********************************************************************************************************
 Given a string S, find the longest palindromic substring in S. You may assume that the maximum
 length of S is 1000, and there exists one unique longest palindromic substring
 
 **********************************************************************************************************/
-
-
 class Solution{
 public:
     string longestPalindrome(string s){
@@ -109,7 +96,37 @@ public:
     }
 };
 
-
+#endif
+/**********************************************************************************************************
+1. 判断是否是回文串
+描述
+Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+For example,
+”A man, a plan, a canal: Panama” is a palindrome.
+”race a car” is not a palindrome.
+ void isalnum(int c) 检查所传的字符是否是字母和数字。  如果是返回真   如果不是返回0
+**********************************************************************************************************/
+bool isPalindrome(string s){
+    transform(s.begin(),s.end(),s.begin(),::tolower);  // 先将所有数字，转换为小写
+    auto left = s.begin(),  right = prev(s.end());  //s.end()  是后面的那个位置
+    while(left < right){
+        if(!::isalnum(*left))  //如果是数字就跳过
+            ++left;
+        else if(!::isalnum(*right)) 
+            --right;
+        else if(*(left++) != *(right--)) 
+            return false;
+    }
+    return true;
+}
+int main()
+{
+    //1. 判断一个字符串是否是回文串，标点符号不算
+    string  str1 = "A man, a plan, a canal: Panama";
+    cout << "isPalindrome result = " << isPalindrome(str1) << endl;
+    //2. 
+    return 0;
+}
 
 
 

@@ -27,6 +27,8 @@ struct TreeNode {
 9. z字遍历二叉树
 10. path路径和
 11. path路径和 -- 求具体的路径
+12. 给定中序和后序遍历重建二叉树
+13. 给定前序和中序遍历重建二叉树
 **********************************************************************************************************/
 /**********************************************************************************************************
 1. 手动创建一颗二叉树，根据数组
@@ -323,53 +325,63 @@ private:
 
 /**********************************************************************************************************
 12. 给定中序和后序遍历重建二叉树
+    vector<int> preorder = {5,9,67,32};
+    vector<int> inorder = {9,5,32,67};
+    vector<int> postorder = {9,32,67,5};
 **********************************************************************************************************/
 class SolutionBuildTreeA {
 public:
     TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder) 
     {
-        return buildTree_t(inorder, 0, inorder.size()-1, postorder, 0, postorder.size()-1);
+        if(inorder.empty() || postorder.empty())
+            return NULL;
+        return buildTree(inorder, 0, inorder.size()-1, postorder, 0, postorder.size()-1);
     }
 
-    TreeNode *buildTree_t(vector<int> &inorder,int iLeft,int iRight, vector<int> &postorder,int pLeft,int pRight)
+    TreeNode *buildTree(vector<int> &inorder,int iLeft,int iRight, vector<int> &postorder,int pLeft,int pRight)
     {
         if(iLeft > iRight || pLeft > pRight)
             return NULL;
 
-        TreeNode* cur = new TreeNode(postorder[pRight]);
+        TreeNode* root = new TreeNode(postorder[pRight]);
         int i = 0;
         for(i = iLeft;i < inorder.size(); i++)
         {
-            if(inorder[i] == cur->val)
+            if(inorder[i] == root->val)
                 break;
         }
-        cur->left = buildTree_t(inorder, iLeft, i-1, postorder, pLeft, pLeft+i-iLeft-1);
-        cur->right = buildTree_t(inorder, i+1, iRight, postorder, pLeft+i-iLeft, pRight-1);
-        return cur;
+        root->left = buildTree(inorder, iLeft, i-1, postorder, pLeft, pLeft+i-iLeft-1);
+        root->right = buildTree(inorder, i+1, iRight, postorder, pLeft+i-iLeft, pRight-1);
+        return root;
     }
 };
 /**********************************************************************************************************
 13. 给定前序和中序遍历重建二叉树
+    vector<int> preorder = {5,9,67,32};
+    vector<int> inorder = {9,5,32,67};
+    vector<int> postorder = {9,32,67,5};
 **********************************************************************************************************/
 class SolutionBuildTreeBB {
 public:
-    TreeNode* generate1(vector<int>& preorder, vector<int>& inorder, int preleft, int preright, int inleft, int inright)
+    TreeNode* buildTree(vector<int>& preorder,  int preleft, int preright,vector<int>& inorder, int inleft, int inright)
     {
         if (preleft > preright || inleft > inright)
             return nullptr;
-            vector<int>::iterator iter = find(inorder.begin(),inorder.end(),preorder[preleft]);
-            int index = iter - inorder.begin();
-            TreeNode* root = new TreeNode(preorder[preleft]);//根节点
-            root->left = generate1(preorder,inorder,preleft+1,preleft+index-inleft,inleft,index-1);
-            root->right = generate1(preorder, inorder,preright-inright+index+1 ,preright , index + 1, inright);
-            return root;
+        vector<int>::iterator iter = find(inorder.begin(),inorder.end(),preorder[preleft]);
+        int index = iter - inorder.begin();
+        TreeNode* root = new TreeNode(preorder[preleft]);//根节点
+        root->left = buildTree(preorder, preleft+1, preleft+index-inleft, inorder, inleft,index-1);
+        root->right = buildTree(preorder, preright-inright+index+1 ,preright , inorder, index + 1, inright);
+        return root;
     }
-        TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
-            int len = preorder.size();
-            TreeNode* root = generate1(preorder, inorder, 0, len - 1, 0, len - 1);
-            return root;
-        }
+    TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
+        if(preorder.empty() || inorder.empty())
+            return NULL;
+        TreeNode* root = buildTree(preorder, 0, preorder.size() - 1,  inorder, 0, inorder.size() - 1);
+        return root;
+    }
 };
+#if 0
 class SolutionBuildTreeB {
 public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
@@ -384,13 +396,14 @@ public:
     {
         if(inorder_start == inorder_end) 
             return new TreeNode(preorder[pre_root_index]);
-        if(inorder_start > inorder_end) return NULL;
+        if(inorder_start > inorder_end)
+            return NULL;
         int root_value = preorder[pre_root_index];
         TreeNode* root = new TreeNode(root_value);
         int i = 0;
-        for( ;i<inorder.size(); ++i)
+        for( ;i < inorder.size(); ++i)
         {
-            if(inorder[i]==root_value)
+            if(inorder[i] == root_value)
                 break;
         }
         root->left = buildTree_t(preorder, inorder, inorder_start, i-1, pre_root_index+1);
@@ -398,6 +411,7 @@ public:
         return root;
     }
 };
+#endif
 int main()
 {
     vector<vector<int>> result;
@@ -460,5 +474,3 @@ int main()
     cout << endl;
     return 0;
 }
-
-
