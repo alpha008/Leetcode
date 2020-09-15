@@ -7,6 +7,7 @@
 #include<unordered_map>
 #include<algorithm>
 #include<deque>
+#include<stack>
 using namespace std;
 
 1. Pattern: Sliding window，滑动窗口类型

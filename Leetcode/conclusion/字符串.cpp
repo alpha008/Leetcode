@@ -119,15 +119,34 @@ bool isPalindrome(string s){
     }
     return true;
 }
+/**********************************************************************************************************
+2. 判断两个字符串是否互为变形词
+   两个字符串出现的字母及次数一样
+**********************************************************************************************************/
+bool isDeformation(string str1,string str2)
+{
+    map<int,int> mapcount ;
+    for(int i = 0 ;i < str1.length();i++)
+    {
+        mapcount[str1[i]] ++;
+    }
+    for(int j = 0; j < str2.length(); j++)
+    {
+        if(--mapcount[str2[j]] < 0)
+            return false;
+    }
+    return true;
+}
+
 int main()
 {
     //1. 判断一个字符串是否是回文串，标点符号不算
     string  str1 = "A man, a plan, a canal: Panama";
     cout << "isPalindrome result = " << isPalindrome(str1) << endl;
-    //2. 
+    //2.  判断两个字符串是否互为变形词
+    string str2 = "123";
+    string str3 = "3221";
+    cout << "isDeformation: " << isDeformation(str2,str3)<< endl;
     return 0;
 }
-
-
-
 
