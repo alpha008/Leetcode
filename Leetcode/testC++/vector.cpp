@@ -21,6 +21,7 @@ int main()
 	vector<int>vectorB(vectorA.begin(), vectorA.end());//本质上还是两个地址区间的内容进行赋值
 	vector<int>vectorC(3, 9);    //构造函数将3个9进行拷贝赋值
 	vector<int>vectorD(vectorA); //两个类型相同的容器进行拷贝赋值
+	cout << "vector.szie = " << vectorA.size() << "vector.capacity = " << vectorA.capacity()<< endl;
 	printVector(vectorA);
 	printVector(vectorB);
 	printVector(vectorC);
