@@ -33,7 +33,7 @@ int testMap03()
 	mapStudent[1] = "student_one";
 	mapStudent[2] = "student_two";
 	mapStudent[3] = "student_three";
-	for (map<int, string>::iterator  iter = mapStudent.begin(); iter != mapStudent.end(); iter++)
+	for (map<int, string>::const_iterator  iter = mapStudent.begin(); iter != mapStudent.end(); iter++)
 		cout << iter->first << ' ' << iter->second << endl;
 	return 0;
 }
@@ -52,8 +52,7 @@ int testMapInsert04()
 		cout << "Insert Successfully" << endl;
 	else
 		cout << "Insert Failure" << endl;
-	map<int, string>::iterator iter;
-	for (iter = mapStudent.begin(); iter != mapStudent.end(); iter++)
+	for (map<int,string>::const_iterator iter = mapStudent.begin(); iter != mapStudent.end(); iter++)
 		cout << iter->first << ' ' << iter->second << endl;
 	return 0;
 }
@@ -217,6 +216,8 @@ int testFunction12()
 }
 
 int main(){
+	int a;
+	cout << a << endl;
 	cout << "插入数据01" << endl;
 	testMap01();
 	cout << "插入数据02" << endl;
