@@ -363,6 +363,12 @@ public:
 **********************************************************************************************************/
 class SolutionBuildTreeBB {
 public:
+    TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
+        if(preorder.empty() || inorder.empty())
+            return NULL;
+        TreeNode* root = buildTree(preorder, 0, preorder.size() - 1,  inorder, 0, inorder.size() - 1);
+        return root;
+    }
     TreeNode* buildTree(vector<int>& preorder,  int preleft, int preright,vector<int>& inorder, int inleft, int inright)
     {
         if (preleft > preright || inleft > inright)
@@ -374,12 +380,7 @@ public:
         root->right = buildTree(preorder, preright-inright+index+1 ,preright , inorder, index + 1, inright);
         return root;
     }
-    TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
-        if(preorder.empty() || inorder.empty())
-            return NULL;
-        TreeNode* root = buildTree(preorder, 0, preorder.size() - 1,  inorder, 0, inorder.size() - 1);
-        return root;
-    }
+
 };
 #if 0
 class SolutionBuildTreeB {

@@ -23,11 +23,12 @@ using namespace std;
 11. 求两个单链表相交的第一个节点
 12. 合并k个有序链表，并返回头指针
  *************************************************************************************************/
-struct ListNode {
+class ListNode {
+public:
     ListNode(int x)
     {
         this->val = x;
-        this->next = nullptr;
+        this->next = NULL;
     }
     int val;
     ListNode *next;
@@ -399,6 +400,7 @@ void printlist(ListNode *phead)
 }
 int main()
 {
+    cout << "sizeof(ListNode)) =  " << sizeof(ListNode) << endl;
     vector<int> numsA = {2,4,3};
     vector<int> numsB = {5,6,4};
     ListNode *phead1 = new ListNode(-1);

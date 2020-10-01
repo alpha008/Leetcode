@@ -11,7 +11,12 @@
         "utility": "cpp",
         "algorithm": "cpp",
         "map": "cpp",
-        "unordered_map": "cpp"
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "new": "cpp",
+        "string": "cpp",
+        "atomic": "cpp",
+        "cstdint": "cpp"
     },
     "cmake.configureOnOpen": false
 }

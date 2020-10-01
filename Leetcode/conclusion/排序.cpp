@@ -53,7 +53,7 @@ void popsort(int *a, int n)
 		}
 	}
 }
-
+//简单排序
 void easy_sort(int *a, int n)
 {
     int i = 0;
@@ -62,7 +62,7 @@ void easy_sort(int *a, int n)
 	{//每个元素都有机会做比较
 		int key = a[i];
 		int index = i;
-		for ( j = i+1; j < n; j++)
+		for ( j = i + 1; j < n; j++)
 		{
 			if (a[j] < key)
 			{
@@ -76,24 +76,27 @@ void easy_sort(int *a, int n)
 	}
 }
 
+
 void insert_sort(int *a,int num)
-{
+{//key前面是有序的
 	int i ,j ,key ;
 	for ( i = 1; i < num; i++)
 	{	
-		int key = a[i];  //哨兵，数组取值都是挖空
-		for ( j = i;j>0 && a[j-1] > key; j--) 
+		int key = a[i];  //循环到谁就把谁拿出来当key
+		for ( j = i; j > 0 && a[j-1] > key; j--) 
 		{//挖空的前一个位置和key关键字比较
 			a[j] = a[j-1]; //往后移动元素
 		}
-		a[j] = key;
+		a[j] = key;//前面的都比key小，那么j位置就留给key
 	}
 }
 
 //归并排序          外排序
 void merge(int *data,int *temp,int start,int middle,int end){
     int i = start, j = middle + 1,k = start;//k代表另一块空间
-    while(i <= middle && j <=end) //[a]    [b]     将这个两个小数组变成有序的
+    while(i <= middle && j <=end)
+     //[a]    [b]     将这个两个小数组变成有序的
+     //i -- > middle |  middle+1 -- > end
     {
         if(data[i] > data[j]){
             temp[k++] = data[j++]; //取两者较小的放在中间数组中
@@ -101,6 +104,7 @@ void merge(int *data,int *temp,int start,int middle,int end){
             temp[k++] = data[i++];
         }
     }
+
     while(i <= middle){       //当i和j两者中有一组比较完了，还有剩下的需要比较
         temp[k++] = data[i++];       
     }
@@ -124,6 +128,8 @@ int merge_sort(int *data,int *temp,int start,int end){
         merge(data, temp, start,middle,end);
     }
 }
+
+
 
 
 //快速排序 -- 哨兵思维
