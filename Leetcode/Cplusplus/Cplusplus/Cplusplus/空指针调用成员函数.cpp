@@ -4,7 +4,7 @@ using namespace std;
 #if 0
 class Person{
 public:
-	void showclassname()//并没有访问this指针
+	void showclassname()//骞舵病鏈夎闂畉his鎸囬拡
 	{
 		cout << "this is Person" << endl;
 	}
@@ -12,7 +12,7 @@ public:
 	{
 		if (this == NULL)
 			return;
-		cout << "age is " << age << endl; //默认会增加一个this指针
+		cout << "age is " << age << endl; //榛樿浼氬鍔犱竴涓猼his鎸囬拡
 	}
 	int age;
 };

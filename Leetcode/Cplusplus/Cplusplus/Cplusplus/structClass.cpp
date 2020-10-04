@@ -2,8 +2,8 @@
 #include<string>
 using namespace std;
 /*
-class Ä¬ÈÏË½ÓĞ
-struct Ä¬ÈÏ¹«ÓĞ
+class é»˜è®¤ç§æœ‰
+struct é»˜è®¤å…¬æœ‰
 */
 #if 0
 class C1{
@@ -15,7 +15,7 @@ struct C2{
 int main()
 {
 	C1 c1;
-	//c1. Ã»ÓĞ¿É·ÃÎÊÄÚÈİ
+	//c1. æ²¡æœ‰å¯è®¿é—®å†…å®¹
 	C2 c2;
 	c2.name = "alpha";
 	cout << c2.name << endl;

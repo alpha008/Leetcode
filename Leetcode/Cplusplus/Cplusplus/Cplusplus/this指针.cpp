@@ -2,8 +2,8 @@
 #include<string>
 using namespace std;
 #if 0
-// this指针  隐含在每一个成员函数内
-// 解决名字冲突，返回类对象本身
+// this鎸囬拡  闅愬惈鍦ㄦ瘡涓�涓垚鍛樺嚱鏁板唴
+// 瑙ｅ喅鍚嶅瓧鍐茬獊锛岃繑鍥炵被瀵硅薄鏈韩
 class Person
 {
 public:
@@ -20,11 +20,11 @@ public:
 };
 void test()
 {
-	Person p1(10);                // this指针指向调用的成员函数所属的对象
+	Person p1(10);                // this鎸囬拡鎸囧悜璋冪敤鐨勬垚鍛樺嚱鏁版墍灞炵殑瀵硅薄
 	cout << "p1.m_age = " << p1.m_age << endl;
-	Person p2(100);  //this指针指向的是调用该成员函数的对象 链式编程方法
+	Person p2(100);  //this鎸囬拡鎸囧悜鐨勬槸璋冪敤璇ユ垚鍛樺嚱鏁扮殑瀵硅薄 閾惧紡缂栫▼鏂规硶
 	p2.PersonAddAge(p1).PersonAddAge(p1);
-	cout << "p2的年龄为:" << p2.m_age << endl;
+	cout << "p2鐨勫勾榫勪负:" << p2.m_age << endl;
 }
 void main()
 {

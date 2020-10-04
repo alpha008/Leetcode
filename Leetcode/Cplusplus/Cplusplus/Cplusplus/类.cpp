@@ -3,7 +3,7 @@
 using namespace std;
 #if 0
 const double PI = 3.14;
-// ÉèÖÃÊôĞÔ   »ñÈ¡ÊôĞÔ
+// è®¾ç½®å±æ€§   è·å–å±æ€§
 class Student{
 public:
 	Student(string name, int id){
@@ -52,7 +52,7 @@ void main()
 	s1.showInfo();
 	s2.showInfo();
 	Circe c1(10);
-	cout << "ÖÜ³¤Îª£º" << c1.calculateZC()<<endl;
+	cout << "å‘¨é•¿ä¸ºï¼š" << c1.calculateZC()<<endl;
 	system("pause");
 }
 #endif

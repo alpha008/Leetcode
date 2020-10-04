@@ -2,10 +2,10 @@
 #include<string>
 #if 0
 using namespace std;
-// ³£¶ÔÏó  ³£³ÉÔ±º¯Êı
+// å¸¸å¯¹è±¡  å¸¸æˆå‘˜å‡½æ•°
 class Person{
-public: // Òşº¬ÔÚÃ¿¸ö³ÉÔ±ÖĞ¶¼´æÔÚÒ»¸öthisÖ¸Õë    Ö¸Õë³£Á¿ Ö¸ÕëµÄÖ¸ÏòÊÇ²»¿ÉÒÔĞŞ¸ÄµÄ
-	void showclassname() const//²¢Ã»ÓĞ·ÃÎÊthisÖ¸Õë
+public: // éšå«åœ¨æ¯ä¸ªæˆå‘˜ä¸­éƒ½å­˜åœ¨ä¸€ä¸ªthisæŒ‡é’ˆ    æŒ‡é’ˆå¸¸é‡ æŒ‡é’ˆçš„æŒ‡å‘æ˜¯ä¸å¯ä»¥ä¿®æ”¹çš„
+	void showclassname() const//å¹¶æ²¡æœ‰è®¿é—®thisæŒ‡é’ˆ
 	{// const Person *const this;
 		cout << "this is Person" << endl;
 	}
@@ -13,16 +13,16 @@ public: // Òşº¬ÔÚÃ¿¸ö³ÉÔ±ÖĞ¶¼´æÔÚÒ»¸öthisÖ¸Õë    Ö¸Õë³£Á¿ Ö¸ÕëµÄÖ¸ÏòÊÇ²»¿ÉÒÔĞŞ¸Ä
 	{
 		if (this == NULL)
 			return;
-		cout << "age is " << age << endl; //Ä¬ÈÏ»áÔö¼ÓÒ»¸öthisÖ¸Õë
+		cout << "age is " << age << endl; //é»˜è®¤ä¼šå¢åŠ ä¸€ä¸ªthisæŒ‡é’ˆ
 	}
 	mutable int age;
 };
 void test02(){
 	const Person p2;
-	p2.age = 100;//mutable int age;¼ÓÓë²»¼ÓµÄÇø±ğ
+	p2.age = 100;//mutable int age;åŠ ä¸ä¸åŠ çš„åŒºåˆ«
 }
-// ³£¶ÔÏóÖ»ÄÜµ÷ÓÃ³£º¯Êı
-// thisÖ¸ÕëË­µ÷ÓÃ¾ÍÖ¸Ïòµ÷ÓÃ¸Ã¶ÔÏó
+// å¸¸å¯¹è±¡åªèƒ½è°ƒç”¨å¸¸å‡½æ•°
+// thisæŒ‡é’ˆè°è°ƒç”¨å°±æŒ‡å‘è°ƒç”¨è¯¥å¯¹è±¡
 void main()
 {
 	test02();

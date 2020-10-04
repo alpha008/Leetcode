@@ -1,31 +1,31 @@
 #include<iostream>
 using namespace std;
 #if 0
-//Ä¬ÈÏ¹¹Ôìº¯Êı   ÎŞ²ÎÊı
-//Îö¹¹º¯Êı       
-//¿½±´¹¹Ôìº¯Êı   Ö¸¿½±´
+//é»˜è®¤æ„é€ å‡½æ•°   æ— å‚æ•°
+//ææ„å‡½æ•°       
+//æ‹·è´æ„é€ å‡½æ•°   æŒ‡æ‹·è´
 class Person
 {
 public:
-	Person(){                               //ÎŞ²Î¹¹Ôìº¯Êı
-		cout << "ÎŞ²ÎÊı¹¹Ôìº¯Êı " << endl;
+	Person(){                               //æ— å‚æ„é€ å‡½æ•°
+		cout << "æ— å‚æ•°æ„é€ å‡½æ•° " << endl;
 	}
-	Person(int age){                       // ÓĞ²Î¹¹Ôìº¯Êı
+	Person(int age){                       // æœ‰å‚æ„é€ å‡½æ•°
 		this->age = age;
-		cout << "ÓĞ²Î¹¹Ôìº¯Êı " << endl;
+		cout << "æœ‰å‚æ„é€ å‡½æ•° " << endl;
 	}
 	~Person()
 	{
-		cout << "Îö¹¹Ôìº¯Êı " << endl;
+		cout << "ææ„é€ å‡½æ•° " << endl;
 	}
-	Person(const Person &other){             //  ¿½±´¹¹Ôìº¯Êı    ÊôĞÔµÄ¿½±´ ²»¿É¸Ä±äÔ­ÄÚÈİ
-		if (this == &other)                  //  ·ÀÖ¹×ÔÉíÑ­»·¿½±´
+	Person(const Person &other){             //  æ‹·è´æ„é€ å‡½æ•°    å±æ€§çš„æ‹·è´ ä¸å¯æ”¹å˜åŸå†…å®¹
+		if (this == &other)                  //  é˜²æ­¢è‡ªèº«å¾ªç¯æ‹·è´
 			return;
 		this->age = other.age;
-		cout << "¿½±´¹¹Ôìº¯Êı " << endl;
+		cout << "æ‹·è´æ„é€ å‡½æ•° " << endl;
 	}
-	Person& operator=(const Person &other){  //¿½±´¹¹Ôìº¯Êı
-		cout << " =¹¹Ôìº¯Êı " << endl;
+	Person& operator=(const Person &other){  //æ‹·è´æ„é€ å‡½æ•°
+		cout << " =æ„é€ å‡½æ•° " << endl;
 	}
 	int age;
 };
@@ -34,7 +34,7 @@ void test01()
 	Person p;
 	p.age = 100;
 	Person p2(p);
-	cout << "p2µÄÄêÁä£º" << p2.age << endl;
+	cout << "p2çš„å¹´é¾„ï¼š" << p2.age << endl;
 }
 void main()
 {

@@ -2,12 +2,12 @@
 #include<string>
 #if 0
 using namespace std;
-// <<   ×óÒÆÔËËã·û
+// <<   å·¦ç§»è¿ç®—ç¬¦
 
 class Person{
 public:
 	Person(){}
-	// ³ÉÔ±º¯ÊıÖØÔØ
+	// æˆå‘˜å‡½æ•°é‡è½½
 	Person operator+(Person &other){
 		Person temp;
 		temp.m_a = this->m_a + other.m_a;
@@ -21,8 +21,8 @@ public:
 	int m_a;
 	int m_b;
 };
-//ÎŞ·¨Ê¹ÓÃ³ÉÔ±º¯ÊıÔÚ×ó²à£¬Ö»ÄÜÀûÓÃÈ«¾Öº¯ÊıÖØÔØ<<×óÒÆÔËËã·û
-//±ê×¼Êä³öÁ÷  È«¾Öº¯Êı¸ãÎªÓÑÔªº¯Êı
+//æ— æ³•ä½¿ç”¨æˆå‘˜å‡½æ•°åœ¨å·¦ä¾§ï¼Œåªèƒ½åˆ©ç”¨å…¨å±€å‡½æ•°é‡è½½<<å·¦ç§»è¿ç®—ç¬¦
+//æ ‡å‡†è¾“å‡ºæµ  å…¨å±€å‡½æ•°æä¸ºå‹å…ƒå‡½æ•°
 ostream& operator<<(ostream &os, Person &p){
 	os << "m_a = " << p.m_a << " m_b = " << p.m_b ;
 	return os;
@@ -36,18 +36,18 @@ public:
 	{
 		m_Num = 0;
 	}
-	//Ç°ÖÃµİÔö
+	//å‰ç½®é€’å¢
 	MyInteger& operator++(){
 		m_Num++;
 		return *this;
 	}
-	//ºóÖÃµİÔö
-	MyInteger operator++(int ){ //Õ¼Î»·ûºÅ
-		// ÏÈ¼ÇÂ¼µ±Ê±µÄ½á¹û
+	//åç½®é€’å¢
+	MyInteger operator++(int ){ //å ä½ç¬¦å·
+		// å…ˆè®°å½•å½“æ—¶çš„ç»“æœ
 		MyInteger temp = *this;
-		//ºóµİÔö
+		//åé€’å¢
 		m_Num++;
-		//×îºó½«¼ÇÂ¼µÄ½á¹û·µ»Ø
+		//æœ€åå°†è®°å½•çš„ç»“æœè¿”å›
 		return temp;
 	}
 private:
@@ -57,12 +57,12 @@ ostream& operator<<(ostream &os, MyInteger myint){
 	os << "a = " << myint.m_Num;
 	return os;
 }
-//Ç°ÖÃ++ÊÇºÏ·¨µÄ£¬ºóÖÃÁ¬Ğø++²»ºÏ·¨
+//å‰ç½®++æ˜¯åˆæ³•çš„ï¼Œåç½®è¿ç»­++ä¸åˆæ³•
 void test02()
 {
 	MyInteger myint;
 	int a = 0;
-	cout << ++(++a) << endl;  //±í´ïÊ½ÏÈ¼Ó  ºó×ÔÔö
+	cout << ++(++a) << endl;  //è¡¨è¾¾å¼å…ˆåŠ   åè‡ªå¢
 	cout << ++myint << endl;
 	cout << myint << endl;
 	cout << myint++<< endl;
@@ -78,7 +78,7 @@ void test01()
 	p2.m_b = 100;
 	bool b1 = p1 < p2;
 	cout << p1 << endl;
-	cout << "×ö²î:" << b1 << endl;
+	cout << "åšå·®:" << b1 << endl;
 }
 
 void main()

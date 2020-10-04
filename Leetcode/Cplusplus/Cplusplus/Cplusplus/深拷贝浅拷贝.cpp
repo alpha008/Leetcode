@@ -6,19 +6,19 @@ class  Person{
 public:
 	Person()
 	{	
-		cout << "Ä¬ÈÏ¹¹Ôìº¯Êý" << endl;
+		cout << "é»˜è®¤æž„é€ å‡½æ•°" << endl;
 	}
 	Person(int age,int H)
 	{
 		this->age = age;
 		this->m_Height = new int(H);
-		cout << "ÓÐ²Î¹¹Ôìº¯Êý" << endl;
+		cout << "æœ‰å‚æž„é€ å‡½æ•°" << endl;
 	}
 	Person(const Person &other)
 	{
 		this->age = other.age;
 		this->m_Height = new int(*other.m_Height);
-		cout << "¿½±´¹¹Ôìº¯Êý" << endl;
+		cout << "æ‹·è´æž„é€ å‡½æ•°" << endl;
 	}
 	~Person()
 	{
@@ -27,21 +27,21 @@ public:
 			delete m_Height;
 			m_Height = NULL;
 		}
-		cout << "Îö¹¹º¯Êý" << endl;
+		cout << "æžæž„å‡½æ•°" << endl;
 	}
 	int age;
-	int *m_Height;// Ç³¿½±´  ¶ÑÉÏµÄÄÚ´æ±»ÖØ¸´ÊÍ·Å
+	int *m_Height;// æµ…æ‹·è´  å †ä¸Šçš„å†…å­˜è¢«é‡å¤é‡Šæ”¾
 };
 
 void test01()
 {
 	Person p1(18,160);
 
-	cout << "p1µÄÄêÁä:" << p1.age<< endl;
-	cout << "p1µÄÄêÁä:" << *p1.m_Height << endl;
+	cout << "p1çš„å¹´é¾„:" << p1.age<< endl;
+	cout << "p1çš„å¹´é¾„:" << *p1.m_Height << endl;
 	Person p2(p1);
-	cout << "p2µÄÄêÁä:" << p2.age << endl;
-	cout << "p2µÄÄêÁä:" << *p2.m_Height << endl;
+	cout << "p2çš„å¹´é¾„:" << p2.age << endl;
+	cout << "p2çš„å¹´é¾„:" << *p2.m_Height << endl;
 
 }
 

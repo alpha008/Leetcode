@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-//¸³ÖµÔËËã·û
+//èµ‹å€¼è¿ç®—ç¬¦
 #if 0
 class Person
 {
@@ -16,28 +16,28 @@ public:
 			p_age = NULL;
 		}
 	}
-	//¸Ğ¾õºÍmemcpyºÜÏñ
+	//æ„Ÿè§‰å’Œmemcpyå¾ˆåƒ
 	Person& operator = (Person&p){
-		// ÏÈÅĞ¶Ï×Ô¼ºµÄ¶ÑÉÏÊÇ·ñÓĞÊı¾İ£¬Èç¹ûÓĞÄÇÃ´ÏÈÊÍ·Å¸É¾»
+		// å…ˆåˆ¤æ–­è‡ªå·±çš„å †ä¸Šæ˜¯å¦æœ‰æ•°æ®ï¼Œå¦‚æœæœ‰é‚£ä¹ˆå…ˆé‡Šæ”¾å¹²å‡€
 		if (p_age != NULL)
 		{
 			delete p_age;
 			p_age = NULL;
 		}
-		p_age = new int(*p.p_age);//½âÒıÓÃÔ­À´µÄ
+		p_age = new int(*p.p_age);//è§£å¼•ç”¨åŸæ¥çš„
 		return *this;
 	}
-	int *p_age;// ¶ÑÇøÓò
+	int *p_age;// å †åŒºåŸŸ
 };
 void test01()
 {
 	Person p1(18);
 	Person p2(20);
 	Person p3(19);
-	p3 = p1 = p2; // ·µ»ØÒıÓÃ²ÅÄÜÁ¬Ğø²Ù×÷
-	cout << "ÄêÁäÎª:" << *p1.p_age << endl;
-	cout << "ÄêÁäÎª:" << *p2.p_age << endl;
-	cout << "ÄêÁäÎª:" << *p3.p_age << endl;
+	p3 = p1 = p2; // è¿”å›å¼•ç”¨æ‰èƒ½è¿ç»­æ“ä½œ
+	cout << "å¹´é¾„ä¸º:" << *p1.p_age << endl;
+	cout << "å¹´é¾„ä¸º:" << *p2.p_age << endl;
+	cout << "å¹´é¾„ä¸º:" << *p3.p_age << endl;
 }
 void main()
 {

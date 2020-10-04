@@ -1,31 +1,31 @@
 #include<iostream>
 #include<string>
 using namespace std;
-//¶ÔÏó³ÉÔ±
+//å¯¹è±¡æˆå‘˜
 #if 0
 class Phone{
 public:
 	Phone(string p_name){
 		this->p_name = p_name;
-		cout << "ÊÖ»ú¹¹Ôì" << endl;
+		cout << "æ‰‹æœºæž„é€ " << endl;
 	}
 	~Phone()
 	{
-		cout << "ÊÖ»úÎö¹¹" << endl;
+		cout << "æ‰‹æœºæžæž„" << endl;
 	}
 	string p_name;
 };
-class  Person{         //ÏÈÓÐÊôÐÔÔÚÓÐÍâÎ§·½·¨
+class  Person{         //å…ˆæœ‰å±žæ€§åœ¨æœ‰å¤–å›´æ–¹æ³•
 public:
 	Person(string name, string phone) :m_phone(phone){
 		this->name = name;
-		cout << "ÈË¹¹Ôì" << endl;
+		cout << "äººæž„é€ " << endl;
 	}
 	~Person(){
-		cout << "ÈËÎö¹¹" << endl;
+		cout << "äººæžæž„" << endl;
 	}
 	string name;
-	Phone m_phone; //ÏÈ¹¹Ôì³ÉÔ±
+	Phone m_phone; //å…ˆæž„é€ æˆå‘˜
 };
 
 void test01()

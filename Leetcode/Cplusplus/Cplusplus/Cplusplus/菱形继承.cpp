@@ -18,11 +18,11 @@ class SheepTuo :public Sheep, public Tuo{
 public:
 
 };
-//ÀûÓÃĞé¼Ì³Ğ¿ÉÒÔ½â¾ö×ÊÔ´ÀË·ÑÎÊÌâ
+//åˆ©ç”¨è™šç»§æ‰¿å¯ä»¥è§£å†³èµ„æºæµªè´¹é—®é¢˜
 void test01(){
 	SheepTuo st;
 	st.Sheep::m_age = 19;
-	st.Tuo::m_age = 20;             //ÁâĞÎ¼Ì³Ğ²úÉúÁËÁ½·İÊı¾İ£¬×ÊÔ´ÀË·Ñ
+	st.Tuo::m_age = 20;             //è±å½¢ç»§æ‰¿äº§ç”Ÿäº†ä¸¤ä»½æ•°æ®ï¼Œèµ„æºæµªè´¹
 	cout << " st.Sheep::m_age"<< st.Sheep::m_age << endl;
 	cout << " st.Tuo::m_age  "<< st.Tuo::m_age << endl;
 	cout << " st.m_age  " << st.m_age << endl;

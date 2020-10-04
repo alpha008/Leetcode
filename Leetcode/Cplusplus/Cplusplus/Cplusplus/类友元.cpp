@@ -3,7 +3,7 @@
 using namespace std;
 #if 0
 class Building;
-// ÉùÃ÷ÓÑÔªÀà   ³ÉÔ±º¯Êı×öÓÑÔª
+// å£°æ˜å‹å…ƒç±»   æˆå‘˜å‡½æ•°åšå‹å…ƒ
 class GoodGay{
 public:
 	GoodGay();
@@ -12,8 +12,8 @@ private:
 	Building *building;
 };
 class Building{
-	//friend class GoodGay;  // ÉùÃ÷ÓÑÔªÀà
-	friend void GoodGay::vist();  // ÉùÃ÷ ³ÉÔ±º¯Êı×öÓÑÔª
+	//friend class GoodGay;  // å£°æ˜å‹å…ƒç±»
+	friend void GoodGay::vist();  // å£°æ˜ æˆå‘˜å‡½æ•°åšå‹å…ƒ
 public:
 	Building();
 	string sittingroom;
@@ -21,8 +21,8 @@ private:
 	string beddingroom;
 };
 Building::Building(){
-	sittingroom = "¿ÍÌü";
-	beddingroom = "ÎÔÊÒ";
+	sittingroom = "å®¢å…";
+	beddingroom = "å§å®¤";
 }
 GoodGay::GoodGay(){
 	building = new Building;

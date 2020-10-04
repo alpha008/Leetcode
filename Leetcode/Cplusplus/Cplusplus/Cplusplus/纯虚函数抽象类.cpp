@@ -1,31 +1,32 @@
 #include<iostream>
 #include<string>
 #if 0
+//find -type f | xargs enca -L zh_CN -x UTF-8
 using namespace std;
-// ´¿Ğéº¯Êı ³éÏóÀà
-// ×ÓÀà±ØĞëÖØĞ´¸¸ÀàµÄ´¿Ğéº¯Êı£¬·ñÔòÒ²Îª³éÏóÀà
+// çº¯è™šå‡½æ•° æŠ½è±¡ç±»
+// å­ç±»å¿…é¡»é‡å†™çˆ¶ç±»çš„çº¯è™šå‡½æ•°ï¼Œå¦åˆ™ä¹Ÿä¸ºæŠ½è±¡ç±»
 class Animal{
 public:
 	virtual void speak() = 0;
 	virtual ~ Animal() = 0;
 };
 Animal:: ~Animal(){
-	cout << "´¿Ğéº¯Êıµ÷ÓÃ" << endl;
+	cout << "çº¯è™šå‡½æ•°è°ƒç”¨" << endl;
 }
 class Cat : public Animal{
 public:
 	Cat(string name){
 		m_Name = new string(name);
-		cout << "¹¹Ôìº¯Êıµ÷ÓÃ" << endl;
+		cout << "æ„é€ å‡½æ•°è°ƒç”¨" << endl;
 	}
-	// ×ÓÀàµÄĞéÎö¹¹µ÷ÓÃ²»µ½µÄÎÊÌâ
-	virtual~Cat(){ // ĞéÎö¹¹½â¾öÊÍ·Å»ùÀàÖ¸ÕëÊÍ·Å²»¸É¾»µÄÎÊÌâ
+	// å­ç±»çš„è™šææ„è°ƒç”¨ä¸åˆ°çš„é—®é¢˜
+	virtual~Cat(){ // è™šææ„è§£å†³é‡Šæ”¾åŸºç±»æŒ‡é’ˆé‡Šæ”¾ä¸å¹²å‡€çš„é—®é¢˜
 		if (m_Name != NULL)
 		{
 			delete m_Name;
 			m_Name = NULL;
 		}
-		cout << "ĞéÎö¹¹º¯Êıµ÷ÓÃ" << endl;
+		cout << "è™šææ„å‡½æ•°è°ƒç”¨" << endl;
 	}
 	virtual void speak() {
 		cout << *m_Name <<  " Cat:speak" << endl;
@@ -34,7 +35,7 @@ public:
 };
 void main()
 {
-	Animal *ab = new  Cat("tom"); // ¸¸ÀàµÄÖ¸ÕëÔÚÎö¹¹Ê±£¬²»»áµ÷ÓÃ×ÓÀàÖĞµÄÎö¹¹º¯Êı
+	Animal *ab = new  Cat("tom"); // çˆ¶ç±»çš„æŒ‡é’ˆåœ¨ææ„æ—¶ï¼Œä¸ä¼šè°ƒç”¨å­ç±»ä¸­çš„ææ„å‡½æ•°
 	ab->speak();
 	delete ab;
 	system("pause");

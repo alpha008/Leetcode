@@ -2,16 +2,16 @@
 #include<string>
 #if 0
 using namespace std;
-//È«¾Öº¯Êı×öÓÑÔª
-//Àà×öÓÑÔª
-//ÀàµÄ³ÉÔ±º¯Êı×öÓÑÔª
+//å…¨å±€å‡½æ•°åšå‹å…ƒ
+//ç±»åšå‹å…ƒ
+//ç±»çš„æˆå‘˜å‡½æ•°åšå‹å…ƒ
 class Building {
 	friend void vister2(Building&bulid);
 public:
 	Building()
 	{
-		m_SittingRoom = "¿ÍÌü";
-		m_bedroom = "ÎÔÊÒ";
+		m_SittingRoom = "å®¢å…";
+		m_bedroom = "å§å®¤";
 	}
 	string m_SittingRoom;
 private:
@@ -19,11 +19,11 @@ private:
 };
 void vister1(Building&bulid)
 {
-	cout << "ºÃ»ùÓÑÕıÔÚ·ÃÎÊ£º" << bulid.m_SittingRoom << endl;
+	cout << "å¥½åŸºå‹æ­£åœ¨è®¿é—®ï¼š" << bulid.m_SittingRoom << endl;
 }
 void vister2(Building&bulid)
 {
-	cout << "ºÃ»ùÓÑÕıÔÚ·ÃÎÊ£º" << bulid.m_bedroom << endl;
+	cout << "å¥½åŸºå‹æ­£åœ¨è®¿é—®ï¼š" << bulid.m_bedroom << endl;
 }
 void test02()
 {

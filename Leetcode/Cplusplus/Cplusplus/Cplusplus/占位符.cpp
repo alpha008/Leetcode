@@ -1,8 +1,8 @@
 #include<iostream>
 using namespace std;
 #if 0
-// Õ¼Î»ÖÃ£¬ĞèÒªÌîÒ»¸ö
-//void func(int a,int 10) µ÷ÓÃÊ±£¬¾Í²»ÓÃÏÔÊ¾Ê¹ÓÃÁË
+// å ä½ç½®ï¼Œéœ€è¦å¡«ä¸€ä¸ª
+//void func(int a,int 10) è°ƒç”¨æ—¶ï¼Œå°±ä¸ç”¨æ˜¾ç¤ºä½¿ç”¨äº†
 void func(int a,int)
 {
 	cout << "this is function" << endl;

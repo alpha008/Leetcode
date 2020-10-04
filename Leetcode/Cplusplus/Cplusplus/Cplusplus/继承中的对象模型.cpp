@@ -8,14 +8,14 @@ public:
 protected:
 	int m_b;
 private:
-	int m_c;   //隐藏的数据被隐藏了，子类中确实存在的
+	int m_c;   //闅愯棌鐨勬暟鎹闅愯棌浜嗭紝瀛愮被涓‘瀹炲瓨鍦ㄧ殑
 
 };
 class Derived :public Base{
 public:
 	int m_d;
 };
-// 对象模型   非静态成员都会被子类继承下去
+// 瀵硅薄妯″瀷   闈為潤鎬佹垚鍛橀兘浼氳瀛愮被缁ф壙涓嬪幓
 void main()
 {
 	cout << "sizeof(Base)" << sizeof(Base) << endl;

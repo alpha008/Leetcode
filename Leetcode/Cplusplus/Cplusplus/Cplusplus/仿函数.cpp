@@ -18,10 +18,10 @@ public:
 void main()
 {
 	MyPrint my;
-	my("hello");  //Ê¹ÓÃÆğÀ´·Ç³£Ïñº¯Êı£¬·Âº¯Êı
+	my("hello");  //ä½¿ç”¨èµ·æ¥éå¸¸åƒå‡½æ•°ï¼Œä»¿å‡½æ•°
 	Myadd a1;
-	cout << "ÇóºÍÎª:"<< a1(11, 22)<<endl;
-	cout << "ÇóºÍÎª:" << Myadd()(22, 33) << endl; //ÄäÃû¶ÔÏó
+	cout << "æ±‚å’Œä¸º:"<< a1(11, 22)<<endl;
+	cout << "æ±‚å’Œä¸º:" << Myadd()(22, 33) << endl; //åŒ¿åå¯¹è±¡
 	system("pause");
 }
 #endif

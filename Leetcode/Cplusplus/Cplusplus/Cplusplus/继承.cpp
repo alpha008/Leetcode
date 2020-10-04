@@ -5,31 +5,31 @@ using namespace std;
 class Java{
 public:
 	void header(){
-		cout << "Ê×Ò³£¬¹«¿ª¿Î£¬µÇÂ¼£¬×¢²á" << endl;
+		cout << "é¦–é¡µï¼Œå…¬å¼€è¯¾ï¼Œç™»å½•ï¼Œæ³¨å†Œ" << endl;
 	}
 	void footer(){
-		cout << "°ïÖúÖÐÐÄ£¬½»Á÷ºÏ×÷£¬Õ¾ÄÚµØÍ¼" << endl;
+		cout << "å¸®åŠ©ä¸­å¿ƒï¼Œäº¤æµåˆä½œï¼Œç«™å†…åœ°å›¾" << endl;
 	}
 	void left(){
 		cout << "Java Python" << endl;
 	}
 	void contetn(){
-		cout << "JavaÊÓÆµ½ÌÑ§" << endl;
+		cout << "Javaè§†é¢‘æ•™å­¦" << endl;
 	}
 };
 class Cplus{
 public:
 	void header(){
-		cout << "Ê×Ò³£¬¹«¿ª¿Î£¬µÇÂ¼£¬×¢²á" << endl;
+		cout << "é¦–é¡µï¼Œå…¬å¼€è¯¾ï¼Œç™»å½•ï¼Œæ³¨å†Œ" << endl;
 	}
 	void footer(){
-		cout << "°ïÖúÖÐÐÄ£¬½»Á÷ºÏ×÷£¬Õ¾ÄÚµØÍ¼" << endl;
+		cout << "å¸®åŠ©ä¸­å¿ƒï¼Œäº¤æµåˆä½œï¼Œç«™å†…åœ°å›¾" << endl;
 	}
 	void left(){
 		cout << "Cplus Python" << endl;
 	}
 	void contetn(){
-		cout << "CplusÊÓÆµ½ÌÑ§" << endl;
+		cout << "Cplusè§†é¢‘æ•™å­¦" << endl;
 	}
 };
 void test01(){
@@ -55,7 +55,7 @@ public:
 	}
 	void showname()
 	{
-		cout << "Ãû×Ö£º" << this->name << "   ÄêÁä" << this->age << endl;
+		cout << "åå­—ï¼š" << this->name << "   å¹´é¾„" << this->age << endl;
 	}
 	string  name;
 	string  age;
@@ -74,6 +74,6 @@ void main()
 	d1.showname();
 	system("pause");
 }
-//¼Ì³ÐÀ´µÄÊÇ¹²ÐÔ£¬×Ô¼ºÌí¼ÓµÄÊÇ¸öÐÔ
+//ç»§æ‰¿æ¥çš„æ˜¯å…±æ€§ï¼Œè‡ªå·±æ·»åŠ çš„æ˜¯ä¸ªæ€§
 #endif
 

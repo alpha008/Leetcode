@@ -1,30 +1,30 @@
 #include<iostream>
 #include<string>
 using namespace std;
-//¶ÔÏó³ÉÔ±
+//å¯¹è±¡æˆå‘˜
 #if 0
-//ËùÓÐ¶ÔÏó¹²ÏíÒ»¸ö¾²Ì¬³ÉÔ±º¯Êý
-//¾²Ì¬³ÉÔ±º¯ÊýÖ»ÄÜ·ÃÎÊ¾²Ì¬³ÉÔ±±äÁ¿
+//æ‰€æœ‰å¯¹è±¡å…±äº«ä¸€ä¸ªé™æ€æˆå‘˜å‡½æ•°
+//é™æ€æˆå‘˜å‡½æ•°åªèƒ½è®¿é—®é™æ€æˆå‘˜å˜é‡
 class Person
 {
 public:
-	static void func()  //ÎÞ·¨Çø·ÖÆÕÍ¨³ÉÔ±±äÁ¿ÊôÓÚÄÄ¸ö¾ßÌåµÄ¶ÔÏó
+	static void func()  //æ— æ³•åŒºåˆ†æ™®é€šæˆå‘˜å˜é‡å±žäºŽå“ªä¸ªå…·ä½“çš„å¯¹è±¡
 	{
-		cout << "¾²Ì¬³ÉÔ±º¯Êý" << endl;
+		cout << "é™æ€æˆå‘˜å‡½æ•°" << endl;
 	}
-	static int a ;   //¾²Ì¬³ÉÔ±±äÁ¿  ÀàÄÚÉùÃ÷  ÀàÍâ¶¨Òå
+	static int a ;   //é™æ€æˆå‘˜å˜é‡  ç±»å†…å£°æ˜Ž  ç±»å¤–å®šä¹‰
 private:
-	static void fund()  //ÀàÍâÎÞ·¨·ÃÎÊË½ÓÐ¾²Ì¬³ÉÔ±º¯Êý
+	static void fund()  //ç±»å¤–æ— æ³•è®¿é—®ç§æœ‰é™æ€æˆå‘˜å‡½æ•°
 	{
-		cout << "¾²Ì¬³ÉÔ±º¯Êý" << endl;
+		cout << "é™æ€æˆå‘˜å‡½æ•°" << endl;
 	}
 };
 int Person::a = 100;
 void test01()
 {
 	Person p1;
-	p1.func(); // Í¨¹ý¶ÔÏó·ÃÎÊ
-	Person::func();  //Í¨¹ýÀàÃû·ÃÎÊ
+	p1.func(); // é€šè¿‡å¯¹è±¡è®¿é—®
+	Person::func();  //é€šè¿‡ç±»åè®¿é—®
 	p1.a = 1000;
 }
 void  main()

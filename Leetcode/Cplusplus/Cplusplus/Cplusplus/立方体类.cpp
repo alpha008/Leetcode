@@ -29,8 +29,8 @@ int cube::calcubeV(){
 void main()
 {
 	cube c1(1,2,3);
-	cout << "±íÃæ»ýÎª£º" << c1.calcubeS() << endl;
-	cout << "Ìå»ýÎª£º   "<< c1.calcubeV() <<endl;
+	cout << "è¡¨é¢ç§¯ä¸ºï¼š" << c1.calcubeS() << endl;
+	cout << "ä½“ç§¯ä¸ºï¼š   "<< c1.calcubeV() <<endl;
 
 
 	system("pause");

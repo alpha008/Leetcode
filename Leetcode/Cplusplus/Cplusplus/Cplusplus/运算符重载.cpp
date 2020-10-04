@@ -1,15 +1,15 @@
 #include<iostream>
 #include<string>
 using namespace std;
-//+ÔËËã·ûÖØÔØ
-//³ÉÔ±º¯ÊıÖØÔØ
-//È«¾Öº¯ÊıÖØÔØ
-//ÄÚÖÃµÄÊı¾İÀàĞÍ²»¿ÉÒÔ¸ü¸Ä
+//+è¿ç®—ç¬¦é‡è½½
+//æˆå‘˜å‡½æ•°é‡è½½
+//å…¨å±€å‡½æ•°é‡è½½
+//å†…ç½®çš„æ•°æ®ç±»å‹ä¸å¯ä»¥æ›´æ”¹
 #if 0
 class Person{
 public:
 	Person(){}
-// ³ÉÔ±º¯ÊıÖØÔØ
+// æˆå‘˜å‡½æ•°é‡è½½
 #if 0
 	Person operator+(Person &other){
 		Person temp;
@@ -22,7 +22,7 @@ public:
 	int m_b;
 };
 
-//È«¾Öº¯ÊıÖØÔØ
+//å…¨å±€å‡½æ•°é‡è½½
 Person operator+(Person &p1, Person &p2){
 	Person temp;
 	temp.m_a = p1.m_a + p2.m_a;

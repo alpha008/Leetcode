@@ -5,24 +5,24 @@ using namespace std;
 class Base{
 public:
 	Base(){
-		cout << "Base¹¹Ôìº¯Êý" << endl;
+		cout << "Baseæž„é€ å‡½æ•°" << endl;
 	}
 	~Base(){
-		cout << "BaseÎö¹¹º¯Êý" << endl;
+		cout << "Baseæžæž„å‡½æ•°" << endl;
 	}
 
 };
 class Derived :public Base{
 public:
 	Derived(){	
-		cout << "Derived¹¹Ôìº¯Êý" << endl;
+		cout << "Derivedæž„é€ å‡½æ•°" << endl;
 	}
 	~Derived(){
-		cout << "DerivedÎö¹¹º¯Êý" << endl;
+		cout << "Derivedæžæž„å‡½æ•°" << endl;
 	}
 
 };
-//¹¹Ôìº¯Êý£¬Îö¹¹º¯Êý  Ë³ÐòÏà·´
+//æž„é€ å‡½æ•°ï¼Œæžæž„å‡½æ•°  é¡ºåºç›¸å
 void main()
 {
 	//Base b;

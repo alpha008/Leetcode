@@ -7,38 +7,38 @@ const int c_g_a = 10;
 const int c_g_b = 10;
 void  main01()
 {
-	// È«¾ÖÇø
-	// È«¾Ö±äÁ¿¡¢¾²Ì¬±äÁ¿¡¢³£Á¿
+	// å…¨å±€åŒº
+	// å…¨å±€å˜é‡ã€é™æ€å˜é‡ã€å¸¸é‡
 
-	// ´´½¨ÆÕÍ¨¾Ö²¿±äÁ¿
+	// åˆ›å»ºæ™®é€šå±€éƒ¨å˜é‡
 	int a = 10;
 	int b = 100;
 	static int s_a = 10;
 	static int s_b = 100;
-	// ³£Á¿        ×Ö·û´®³£Á¿      constĞŞÊÎµÄÈ«¾Ö³£Á¿
-	cout << "×Ö·û´®µÄµØÖ·£º" << &("string1") << endl;
+	// å¸¸é‡        å­—ç¬¦ä¸²å¸¸é‡      constä¿®é¥°çš„å…¨å±€å¸¸é‡
+	cout << "å­—ç¬¦ä¸²çš„åœ°å€ï¼š" << &("string1") << endl;
 
-	cout << "È«¾Ö±äÁ¿ g_a = " << &g_a << endl;
-	cout << "È«¾Ö±äÁ¿ g_b = " << &g_b << endl;
-	cout << "¾Ö²¿±äÁ¿ a = " << &a << endl;
-	cout << "¾Ö²¿±äÁ¿ b = " << &b << endl;
-	cout << "¾²Ì¬±äÁ¿ s_a = " << &s_a << endl;
-	cout << "¾²Ì¬±äÁ¿ s_b = " << &s_b << endl;
+	cout << "å…¨å±€å˜é‡ g_a = " << &g_a << endl;
+	cout << "å…¨å±€å˜é‡ g_b = " << &g_b << endl;
+	cout << "å±€éƒ¨å˜é‡ a = " << &a << endl;
+	cout << "å±€éƒ¨å˜é‡ b = " << &b << endl;
+	cout << "é™æ€å˜é‡ s_a = " << &s_a << endl;
+	cout << "é™æ€å˜é‡ s_b = " << &s_b << endl;
 
-	cout << "¾²Ì¬±äÁ¿ c_g_a = " << &c_g_a << endl;
-	cout << "¾²Ì¬±äÁ¿ c_g_b = " << &c_g_b << endl;
+	cout << "é™æ€å˜é‡ c_g_a = " << &c_g_a << endl;
+	cout << "é™æ€å˜é‡ c_g_b = " << &c_g_b << endl;
 	system("pause");
 }
 #elif 0
-//²»Òª·´»ØÕ»ÉÏµÄµØÖ·
-int *function() // ĞÎ²ÎÒ²ÊÇÔÚÕ»ÉÏ¿ª±Ù¿Õ¼ä
+//ä¸è¦åå›æ ˆä¸Šçš„åœ°å€
+int *function() // å½¢å‚ä¹Ÿæ˜¯åœ¨æ ˆä¸Šå¼€è¾Ÿç©ºé—´
 {
 	int a = 10;
 	return &a;
 }
 void main()
 {
-	//Õ»Çø£¬²»Òª·µ»Ø¾Ö²¿±äÁ¿µÄµØÖ·
+	//æ ˆåŒºï¼Œä¸è¦è¿”å›å±€éƒ¨å˜é‡çš„åœ°å€
 	int * p = function();
 	cout << "p = " << *p << endl;
 	cout << "p = " << *p << endl;
@@ -47,7 +47,7 @@ void main()
 #elif 0
 int *function()
 {
-	int *p = new int(10);   //ÄäÃûÕûÊıÀà
+	int *p = new int(10);   //åŒ¿åæ•´æ•°ç±»
 
 	delete p;
 	return p;

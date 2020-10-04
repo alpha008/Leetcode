@@ -2,10 +2,10 @@
 #include<string>
 using namespace std;
 #if 0
-// ³ÉÔ±ÉèÖÃÎªË½ÓÐ¿É¿ØÖÆ¶ÁÐ´£¬Ð´¿É¼ì²âÊý¾ÝÓÐÐ§ÐÔ
+// æˆå‘˜è®¾ç½®ä¸ºç§æœ‰å¯æŽ§åˆ¶è¯»å†™ï¼Œå†™å¯æ£€æµ‹æ•°æ®æœ‰æ•ˆæ€§
 class Person{
 public:
-	//ÐÕÃû¿É¶Á¿ÉÐ´
+	//å§“åå¯è¯»å¯å†™
 	Person(string name ,int age,string lover){
 		this->m_age = age;
 		this->name = name;
