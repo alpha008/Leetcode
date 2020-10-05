@@ -103,14 +103,15 @@ vector<vector<int> > levelOrder(TreeNode * root){
 2. 求最小深度时，需要返回两者中较小的，但是当左右子树其中一个为空的时候，就会出现问题，如果按照常规条件返回
    此处返回的节点并不是叶子节点，即没有到达叶子节点不算二叉树的最小深度，不符合概念
 **********************************************************************************************************/
-int minDepth(TreeNode* root) {
-    if (root == NULL) return 0;
-    if (root->left == NULL  && root->right != NULL) 
-        return 1 + minDepth(root->right);  //遍历到叶子节点 返回1
-    if (root->right == NULL && root->left != NULL)
-        return 1 + minDepth(root->left);  //遍历到叶子节点 返回1
-    return  min(minDepth(root->left), minDepth(root->right)) + 1;
-}
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+        if(!root) return 0;
+        if(root->left == NULL && root->right !=NULL) return 1 + minDepth(root->right);
+        if(root->left != NULL && root->right == NULL) return 1 + minDepth(root->left); 
+        return min(minDepth(root->left), minDepth(root->right)) + 1;
+    }
+};
 /**********************************************************************************************************
 3. 二叉树最大深度
    分治
@@ -217,17 +218,7 @@ vector<vector<int> > relevelOrder(TreeNode * root){
 }
 /**********************************************************************************************************
 9.z字遍历二叉树
-     3    true
-    / \
-    9 20  true
-    / \
-    15 7  true
-return its zigzag level order traversal as:
-    [
-    [3],     true
-    [20,9],  true
-    [15,7]   true
-    ]
+
 **********************************************************************************************************/
 //广度优先遍历，用一个 bool 记录是从左到右还是从右到左，每一层结束就翻转一下   
 vector<vector<int> > ziglevelOrder(TreeNode * root){
@@ -262,17 +253,7 @@ vector<vector<int> > ziglevelOrder(TreeNode * root){
 }
 /**********************************************************************************************************
 10.path路径和
-Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the
-values along the path equals the given sum.
-For example: Given the below binary tree and sum = 22,
-     5
-    / \
-    4 8
-   / / \
-  11 13 4
-  / \ \
-  7 2  1
-return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
+
 **********************************************************************************************************/
 bool hasPath(TreeNode *root, int sum){
     if(!root) return false;
@@ -283,21 +264,7 @@ bool hasPath(TreeNode *root, int sum){
 
 /**********************************************************************************************************
 11.path路径和 -- 求具体的路径
-描述
-Given a binary tree and a sum, find all root-to-leaf paths where each path’s sum equals the given sum.
-For example: Given the below binary tree and sum = 22,
-5
-/ \
-4 8
-/ / \
-11 13 4
-/ \ / \
-7 2 5 1
-return
-[
-[5,4,11,2],
-[5,8,4,5]
-]
+
 **********************************************************************************************************/
 class Solution{
 public:
@@ -338,28 +305,20 @@ public:
         return buildTree(inorder, 0, inorder.size()-1, postorder, 0, postorder.size()-1);
     }
 
-    TreeNode *buildTree(vector<int> &inorder,int iLeft,int iRight, vector<int> &postorder,int pLeft,int pRight)
+    TreeNode *buildTree(vector<int> &inorder,int inleft,int inright, vector<int> &postorder,int pLeft,int pRight)
     {
-        if(iLeft > iRight || pLeft > pRight)
+        if(inleft > inright || pLeft > pRight)
             return NULL;
-
-        TreeNode* root = new TreeNode(postorder[pRight]);
-        int i = 0;
-        for(i = iLeft;i < inorder.size(); i++)
-        {
-            if(inorder[i] == root->val)
-                break;
-        }
-        root->left = buildTree(inorder, iLeft, i-1, postorder, pLeft, pLeft+i-iLeft-1);
-        root->right = buildTree(inorder, i+1, iRight, postorder, pLeft+i-iLeft, pRight-1);
+        vector<int>::iterator iter = find(inorder.begin(),inorder.end(),postorder[pRight]);
+        int index = iter - inorder.begin();  // 返回的是距离开始结点的位置，并不是个数
+        TreeNode* root = new TreeNode(postorder[pRight]);                       //-1去掉中间个数
+        root->left = buildTree(inorder, inleft, index-1, postorder, pLeft, pLeft+index-inleft-1);
+        root->right = buildTree(inorder, index+1, inright, postorder, pLeft+index-inleft, pRight-1);
         return root;
     }
 };
 /**********************************************************************************************************
 13. 给定前序和中序遍历重建二叉树
-    vector<int> preorder = {5,9,67,32};
-    vector<int> inorder = {9,5,32,67};
-    vector<int> postorder = {9,32,67,5};
 **********************************************************************************************************/
 class SolutionBuildTreeBB {
 public:
@@ -374,13 +333,83 @@ public:
         if (preleft > preright || inleft > inright)
             return nullptr;
         vector<int>::iterator iter = find(inorder.begin(),inorder.end(),preorder[preleft]);
-        int index = iter - inorder.begin();
+        int index = iter - inorder.begin();  // 返回的是距离开始结点的位置，并不是个数
         TreeNode* root = new TreeNode(preorder[preleft]);//根节点
         root->left = buildTree(preorder, preleft+1, preleft+index-inleft, inorder, inleft,index-1);
         root->right = buildTree(preorder, preright-inright+index+1 ,preright , inorder, index + 1, inright);
         return root;
     }
 
+};
+//14 二叉树层序遍历  递归
+class Level{
+public:
+    vector<vector<int>> levelOrder(TreeNode *root){
+        vector<vector<int>> result;
+        traverse(root,1,result);
+        return result;
+    }
+    void traverse(TreeNode* root,int level, vector<vector<int>>&result){
+        if(!root) return ;
+        if(level > result.size()){
+             result.push_back(vector<int>());   
+        }
+        result[level-1].push_back(root->val);
+        traverse(root->left ,level++,result);
+        traverse(root->right ,level++,result);
+    }
+
+};
+//94. Binary Tree Inorder Traversal
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        if(!root) return {};
+        inorderTraversal(root->left);
+        result.push_back(root->val);
+        inorderTraversal(root->right);
+        return result;
+    }
+    vector<int> result;
+};
+//112. Path Sum
+class Solution {
+public:
+    bool hasPathSum(TreeNode* root, int sum) {
+        if(!root)  return false;
+        if(root->left == NULL && root->right == NULL)
+            return root->val == sum ;
+        return hasPathSum(root->left, sum - root->val) || hasPathSum(root->right, sum - root->val);
+    }
+};
+//113. Path Sum II
+class Solution {
+public:
+    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+        vector<vector<int>> result;
+        vector<int> path;
+        pathsum(root, sum , result, path);
+        return result;
+    }
+    void pathsum(TreeNode *root, int sum ,vector<vector<int>>&result,vector<int>&path){
+        if(!root) return ;
+        path.push_back(root->val);
+        if(root->left == NULL && root->right == NULL){
+            if(root->val == sum )
+                result.push_back(path);
+        }
+        pathsum(root->left, sum - root->val , result, path);
+        pathsum(root->right, sum - root->val , result, path);
+        path.pop_back();
+    }
+};
+//104. Maximum Depth of Binary Tree
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if(!root) return 0;   
+        return max(maxDepth(root->left),maxDepth(root->right))+1;
+    }
 };
 #if 0
 class SolutionBuildTreeB {

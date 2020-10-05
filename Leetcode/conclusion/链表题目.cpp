@@ -329,11 +329,306 @@ public:
         if(Lists.size() == 0 ) 
             return nullptr;
         ListNode * p = Lists[0];
-        for(int i = 0;i < Lists.size(); i++){
+        for(int i = 1;i < Lists.size(); i++){
             p = mergeTwoLists(p, Lists[i]);
         }
    }
 };
+//13.两个链表求和
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode head(-1);
+        if(l1 == NULL || l2 == NULL)
+            return NULL;
+        int carry = 0;
+        
+        ListNode *prev = &head;
+        for(ListNode *p1=l1,*p2=l2 ; p1!=NULL||p2!=NULL;
+            p1 = p1->next!=NULL ? p1->next :NULL ,p2 = p2->next!=NULL ? p2->next: NULL,
+           prev=prev->next)
+        {
+            int ai =  p1 == NULL ? 0: p1->val;
+            int bi =  p2 == NULL ? 0: p2->val;
+            int val = (ai + bi + carry) %10;
+            carry = (ai + bi + carry) /10;
+            prev->next = new ListNode(val);
+        }
+        if(carry > 0)
+            prev->next = new ListNode(carry);
+        return head.next;
+    }
+};
+//14. 删除倒数第k个结点
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        if(!head) return NULL;
+        ListNode dummy(-1);
+        dummy.next = head;
+        ListNode *p = &dummy;
+        ListNode *q = &dummy;
+        for(int i =0; i< n;i++)
+        {
+            q = q->next;
+        }
+        while(q->next)
+        {
+            p = p->next;
+            q = q->next;
+        }
+        ListNode *temp = p->next;
+        p->next = p->next->next;
+        delete temp ;
+        return dummy.next;
+    }
+};
+
+//15合并两个有序链表
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode  head(-1);
+        for(ListNode *p = &head ;l1!=NULL || l2!=NULL;p = p->next)    
+        {        
+            int val1 = l1 == NULL ? INT32_MAX : l1->val;// 当出现某个链表中为INT32_MAX，那么说明另外一个链表中的节点比较小
+            int val2 = l2 == NULL ? INT32_MAX : l2->val;
+            if(val1 <= val2)
+            {
+                p->next = l1;
+                l1 = l1->next;
+            }else{
+                p->next = l2;
+                l2 = l2->next;
+            }
+        }
+        return head.next;
+    }
+};
+//16.删除链表中重复结点
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(head == NULL) return NULL;
+        for(ListNode *p = head; p!=NULL && p->next!=NULL; p = p->next){
+            if(p->val == p->next->val){
+                   ListNode * temp ;
+                   temp = p->next;
+                   p->next = p->next->next;
+                   delete temp;                   
+            }
+        }
+        return head;
+    }
+};
+
+//17. 删除链表中重复结点，不允许重复
+// 删除节点时，当前cur设置了标记位，当删除重复的节点后，还要判断该结点是否为空
+// 然后继续遍历
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(!head) return NULL;
+        ListNode dummy(-1);
+        ListNode * cur = head,*prev = &dummy;
+        while(cur!=NULL){
+            bool duplicated = false;
+            while(cur->next !=NULL && cur->next->val == cur->val){
+                duplicated = true;
+                ListNode *temp = cur;
+                cur = cur->next;
+                delete temp;
+            }
+            if(duplicated){
+                ListNode*temp = cur;
+                cur = cur->next;
+                delete temp;
+                continue;
+            }
+            prev->next = cur;
+            prev = prev->next;
+            cur = cur->next;    
+        }
+        prev->next = cur;
+        return dummy.next;
+    }
+};
+//18. 147. Insertion Sort List  //插入法排序将链表排序
+//  1 --- 0 --- 0 --- 0 --- 0
+// prev  head   cur
+class Solution {
+public:
+    ListNode* insertionSortList(ListNode* head) {
+        ListNode *newhead = new ListNode(-1);
+        while(head != NULL){
+            ListNode *cur = head->next; // cur开始移动
+            ListNode *pre = newhead;//每次都从头开始
+            while(pre->next != NULL &&pre->next->val < head->val){
+                pre = pre->next; //找到第一个比未排序的大的点
+            }
+            head->next = pre->next;
+            pre->next = head;
+            head = cur;
+        }
+        return newhead->next;
+    }
+};
+//141. Linked List Cycle  判断链表是否有环
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        if(!head) return false;
+        ListNode *fast = head;
+        ListNode *slow = head;
+        while(fast !=NULL && fast->next!=NULL){
+            slow =slow->next;
+            fast = fast->next;
+            if(fast == slow){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        return false;
+    }
+
+};
+//142. Linked List Cycle II
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        if(head == NULL || head->next ==NULL ) return NULL;
+        ListNode *fast = head;
+        ListNode *slow = head;
+        while(fast!=NULL && fast->next !=NULL){
+            slow = slow->next;
+            fast = fast->next->next;
+            if(fast == slow){
+                break;
+            }
+        }
+        if(fast!=slow) return NULL;
+        fast = head;
+        while(slow!=fast){
+            slow  = slow->next;
+            fast  =fast->next;
+        }
+        return fast;
+    }
+};
+//160. Intersection of Two Linked Lists 求两个链表相交的点
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+       if(headA == NULL || headB == NULL) return NULL;
+       int k1 = 1;
+       int k2 = 1;
+        ListNode *l1 = headA;
+        ListNode *l2 = headB;
+        while(l1){
+            l1 = l1->next;
+            k1++;
+        }
+        while(l2){
+            l2 = l2->next;
+            k2++;
+        }
+        if(l1 != l2){
+            return NULL;
+        }
+        ListNode *p1 = headA;
+        ListNode *p2 = headB;
+        if(k1 > k2){
+            int n = k1-k2;
+            while(n --)
+                p1= p1->next;
+        }else{
+            int n = k2-k1;
+            while(n--)
+                p2 = p2->next;
+        }
+        while(p1!=p2){
+            p1 = p1->next;
+            p2 = p2->next;
+        }
+        return p1;
+    }
+};
+//445. Add Two Numbers II
+// 头插法
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        stack<int> s1, s2;
+        while (l1) {
+            s1.push(l1->val);
+            l1 = l1->next;
+        }
+        while (l2) {
+            s2.push(l2->val);
+            l2 = l2->next;
+        }
+        int sum = 0;
+        ListNode *res = new ListNode(0);
+        while (!s1.empty() || !s2.empty()) {
+            if (!s1.empty()) {sum += s1.top(); s1.pop();}
+            if (!s2.empty()) {sum += s2.top(); s2.pop();}
+            res->val = sum % 10;
+            ListNode *head = new ListNode(sum / 10);
+            head->next = res;
+            res = head;
+            sum /= 10;//消除上一次的进位
+        }
+        return res->val == 0 ? res->next : res;
+    }
+};
+//203. Remove Linked List Elements
+//删除链表中某一元素
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        if(head==nullptr)return head;
+        ListNode* p=new ListNode(0);
+        p->next=head;
+        ListNode* cur=p;
+        while(cur&&cur->next){
+            if(cur->next->val==val){
+                cur->next=cur->next->next;
+            }
+            else{
+                cur=cur->next;
+            }
+        }
+        return p->next;
+    }
+};
+//24. Swap Nodes in Pairs
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        ListNode *dummy = new ListNode(-1), *pre = dummy;
+        dummy->next = head;
+        while (pre->next && pre->next->next) {
+            ListNode *t = pre->next->next;
+            pre->next->next = t->next;
+            t->next = pre->next;
+            pre->next = t;
+            pre = t->next;
+        }
+        return dummy->next;
+    }
+};
+
 /*************************************************************************************************
  根据数组创建链表，头结点的数据域一般不使用
  *************************************************************************************************/
@@ -382,6 +677,7 @@ void delNode(ListNode *phead,int value)
     }
     prev -> next = pcur->next; 
 }
+
 /*************************************************************************************************
  遍历链表
  *************************************************************************************************/

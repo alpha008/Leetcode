@@ -314,7 +314,89 @@ int removnullsting(string s1)
     }
     return num;
 }
-
+/**********************************************************************************************************
+13. plus one
+**********************************************************************************************************/
+class PlusOne{
+public:
+    vector<int> mPlusOne(vector<int> &digits){       
+        add(digits,1);
+        return digits;
+    }
+    void add (vector<int> &digits, int digit){
+        int carry = digit;
+        for(auto it  = digits.rbegin();it != digits.rend();it++){
+              *it = *it +carry;
+              carry = *it /10;  
+              *it %=10;
+        }
+        if(carry > 0) digits.insert(digits.begin(),1);
+    }
+};
+/**********************************************************************************************************
+14. 爬楼梯  f(n) = f(n-1) + f(n-2)
+**********************************************************************************************************/
+class ClimbStairs{
+public:
+    int climbStairs(int n){
+        if(n = 0 )
+            return 0;
+        int prev = 0;
+        int cur = 1;
+        for(int i = 1; i < n; i++){
+            int temp = cur;      
+            cur = prev + cur;  
+            prev = temp;
+        }
+        return cur;
+    }
+};
+//1. Two Sum
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int,int> map1;
+        for(int i = 0;i< nums.size(); i++){
+            if(map1.count(target - nums[i]) > 0){
+                return {map1[nums[i]], i };
+            }
+            else{
+                map1[nums[i]] = i;
+            }
+        }
+        return {};
+    }
+};
+66. Plus One
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        if(digits.size() == 0)  return {};
+        int c = 1;
+        for(int i = digits.size()-1; i >=0; i--)
+        {
+            int a  = digits[i] + c;
+            digits[i] = a%10;
+            c = a/10;
+        }
+        if(c > 0) 
+            digits.insert(digits.begin(), c);
+        return digits;
+    }
+};
+//27. Remove Element
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int index = 0;
+        for(int i = 0; i < nums.size(); i ++){
+            if(nums[i]!=val){
+                nums[index++] = nums[i];
+            }
+        }
+        return index ;
+    }
+};
 int main()
 {  
     vector<int> result;
