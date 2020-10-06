@@ -129,9 +129,6 @@ int merge_sort(int *data,int *temp,int start,int end){
     }
 }
 
-
-
-
 //快速排序 -- 哨兵思维
 void quick(int *data,int start,int end){
     if(start >= end) 

@@ -8,6 +8,7 @@
 #include<set>
 #include<unordered_set>
 #include<algorithm>
+#include<stack>
 using namespace std;
 struct TreeNode {
     int val;
@@ -93,15 +94,7 @@ vector<vector<int> > levelOrder(TreeNode * root){
 }
 /**********************************************************************************************************
 2.二叉树最小深度 -- 到叶子节点
-    1.首先判断根节点是否为空，若为空，返回0
-    2.判断左子树，当左子树为空返回右子树+1
-    3.判断右子树，当右子树为空返回左子树+1
-    4.当左右子树不为空时，返回左右子树中较小的
-最小深度需要考虑到是否某个子树深度为0，如果有个节点某个子树为0，就要返回左右子树中深度的最大值，而不是最小值。
-注意：
-1. 求深度的时候，返回的是分支中较大的，这么做没问题
-2. 求最小深度时，需要返回两者中较小的，但是当左右子树其中一个为空的时候，就会出现问题，如果按照常规条件返回
-   此处返回的节点并不是叶子节点，即没有到达叶子节点不算二叉树的最小深度，不符合概念
+
 **********************************************************************************************************/
 class Solution {
 public:
@@ -114,8 +107,7 @@ public:
 };
 /**********************************************************************************************************
 3. 二叉树最大深度
-   分治
-2.3使用BFS遍历最方便
+
 **********************************************************************************************************/
 int maxDepth(TreeNode *root){
     if(root == NULL)  //边界点
@@ -140,8 +132,7 @@ int GetNodeNum(TreeNode * pRoot)
 }
 /**************************************************************************************************
 5. 前序遍历递归解法：
-（1）如果二叉树为空，空操作
-（2）如果二叉树不为空，访问根节点，前序遍历左子树，前序遍历右子树
+
  *************************************************************************************************/
 void PreOrderTraverse(TreeNode * pRoot) 
 { 
@@ -180,17 +171,7 @@ void PostOrderTraverse(TreeNode * pRoot)
 }
 /**********************************************************************************************************
 8.分层遍历二叉树，反转
-    3
-    / \
-    9 20
-    / \
-    15 7
-return its boom-up level order traversal as:
-    [
-    [15,7]
-    [9,20],
-    [3],
-    ]
+
 **********************************************************************************************************/
 vector<vector<int> > relevelOrder(TreeNode * root){
     cout << "relevelOrder" << endl;
@@ -411,6 +392,59 @@ public:
         return max(maxDepth(root->left),maxDepth(root->right))+1;
     }
 };
+//100. Same Tree
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(!p && !q )  return true;
+        if((p &&! q) || (!p && q) || (p->val != q->val)) return false;
+        return isSameTree(p->left,q->left) && isSameTree(p->right,q->right);
+    }
+};
+bool isSameTree(TreeNode* p, TreeNode* q) {
+        stack<TreeNode*> st;
+        st.push(p); st.push(q);
+        while (!st.empty()) {
+            p = st.top(); st.pop();
+            q = st.top(); st.pop();
+            if (!p && !q) continue;
+            if ((p && !q) || (!p && q) || (p->val != q->val)) return false;
+            st.push(p->right); st.push(q->right);
+            st.push(p->left); st.push(q->left);
+        }
+        return true;
+    }
+//101. Symmetric Tree
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {       
+        if(root->left->val == root->right->val) {
+             return true;
+        }else{
+            return false;
+        } 
+        return isSymmetric(root->left) && isSymmetric(root->right);
+    }
+};
+class Solution {
+public:
+    vector<string> binaryTreePaths(TreeNode* root) {
+        if(!root) return {};
+        vector<string> result;
+        if (root) 
+            binaryTreePaths(root, "", result);
+        return result;
+    }
+    void binaryTreePaths(TreeNode *root, string path, vector<string> &result) {
+        path += to_string(root->val);
+        if (!root->left && !root->right) result.push_back(path);
+        else {
+            if (root->left) binaryTreePaths(root->left, path + "->", result);
+            if (root->right) binaryTreePaths(root->right, path + "->", result);
+        }
+    }
+};
+
 #if 0
 class SolutionBuildTreeB {
 public:

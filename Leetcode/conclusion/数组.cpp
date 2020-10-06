@@ -46,7 +46,7 @@ void printvector(vector<int>&nums)
 1. Two Sum
 假设解唯一，并且元素没有重复
 Given nums = [2, 7, 11, 15], target = 9,
-Because nums[0] + nums[1] = 2 + 7 = 9,
+Because nums[0] + nums[1    ] = 2 + 7 = 9,
 return [0, 1]. 使用哈希表进行缓存，降低时间复杂度
 **********************************************************************************************************/
 vector<int> findtwoSum(vector<int>& nums, int target) {
@@ -395,6 +395,66 @@ public:
             }
         }
         return index ;
+    }
+};
+//34. Find First and Last Position of Element in Sorted Array
+/*
+题目要求找到开始的索引和结束索引，所以就是C++的lower_bound和upper_bound。代码我觉得应该是要背下来的，
+这两个函数只有一点不同，就是nums[mid]与target的判断，lower_bound倾向于找左边的元素，所以只有nums[mid] >= target时才移动左指针；
+而upper_bound倾向于找右边的元素，所以当nums[mid] <= target就向右移动左指针了。
+
+lower_bound返回的是开始的第一个满足条件的位置，而upper_bound返回的是第一个不满足条件的位置。所以，当两个相等的时候代表没有找到，
+如果找到了的话，需要返回的是[left, right - 1].
+*/
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int low = lower_bound(nums, target);
+        int high = upper_bound(nums, target);
+        if (low == high) 
+            return {-1, -1};
+        else
+            return {low, high - 1};
+    }
+    int lower_bound(vector<int>& nums, int target) {
+        const int N = nums.size();
+        // [l, r)
+        int l = 0, r = N;
+        while (l < r) {
+            int mid = l + (r - l) / 2;
+            if (nums[mid] >= target) {
+                r = mid; //右边界一直往左边压
+            } else  {
+                l = mid + 1;
+            }
+        }
+        return l;
+    } // 同样的查找方法，结束条件一直，统一返回l，为啥差别会这么大，有意思
+    // 假设查找的元素为连续且相等      
+    // 上面那个会一直往左边收缩，直到 l = r , 返回满足target的下标  
+    // 下面这个会一直往右边收缩，直到 l = r , 返回满足下标的l，记第一个大于target的元素
+    int upper_bound(vector<int>& nums, int target) {
+        const int N = nums.size();
+        // [l, r)
+        int l = 0, r = N;
+        while (l < r) {   // 返回的是第一个大于target的位置的下标
+            int mid = l + (r - l) / 2;
+            if (nums[mid] <= target) {
+                l = mid + 1; //左边界一直往右边压
+            } else {
+                r = mid;
+            }
+        }
+        return l;
+    }
+}; // 二分查找
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        auto low = lower_bound(nums.begin(), nums.end(), target);
+        auto high = upper_bound(nums.begin(), nums.end(), target);
+        if (low == high) return {-1, -1};
+        return {low - nums.begin(), high - nums.begin() - 1};
     }
 };
 int main()
