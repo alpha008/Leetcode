@@ -48,16 +48,18 @@ int longestValidParentheses(string s){
         if(s[i] == '(')
             st.push(i);
         else if(s[i] == ')'){
-            if(st.empty()){
-                start = i + 1;
+            if(st.empty()){  // 为空返回1
+                start = i + 1;           // 更新起始位置
             }else{
-                st.pop();
+                st.pop();  // 弹出末端元素后计算长度
                 res = st.empty() ? max(res , i - start + 1) : max(res, i - st.top());   
-            }
+            }// 跟起始位置相比
         }
     }
     return res;
-}
+}//左边来了压栈，右边来了计算
+
+// 最长有效子串
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {

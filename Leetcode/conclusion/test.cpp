@@ -51,9 +51,14 @@ public:
         return num*sign;
     }
 };
+#include<stack>
 int main()
 {
     //calBitPc();
+    stack<int>s1;
+    cout << "1" << s1.empty() <<endl;
+    s1.push(1);
+    cout << "2" << s1.empty() <<endl;
     int i = 1;
     cout << "i++ = " << i++ << endl;
     cout << "i = " << i << endl;

@@ -46,7 +46,9 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "cinttypes": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "stack": "cpp",
+        "ctime": "c"
     },
     "cmake.configureOnOpen": false
 }
