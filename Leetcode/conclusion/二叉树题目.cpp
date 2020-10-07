@@ -66,7 +66,6 @@ void printMatrix(vector<vector<int>> &display)
         cout << endl;
     }
 }
-
 /**********************************************************************************************************
 1.层序遍历二叉树
 **********************************************************************************************************/
@@ -92,9 +91,34 @@ vector<vector<int> > levelOrder(TreeNode * root){
     }
     return result;
 }
+// 二叉树层序遍历
+class Solution {
+public:
+   vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> result;
+        if(root == nullptr)  return result;
+        queue<TreeNode *> current;
+        vector<int>level;
+        current.push(root);
+        current.push(nullptr);
+        while(!current.empty()){
+            TreeNode * temp = current.front();
+            current.pop();
+            if(temp){
+                level.push_back(temp->val);
+                if(temp->left != nullptr) current.push(temp->left);
+                if(temp->right!=nullptr) current.push(temp->right);
+            }else{
+                result.push_back(level);
+                level.clear();
+                if(current.size() > 0) current.push(nullptr);
+            }         
+        }
+        return result;
+    }
+};
 /**********************************************************************************************************
 2.二叉树最小深度 -- 到叶子节点
-
 **********************************************************************************************************/
 class Solution {
 public:
@@ -107,7 +131,6 @@ public:
 };
 /**********************************************************************************************************
 3. 二叉树最大深度
-
 **********************************************************************************************************/
 int maxDepth(TreeNode *root){
     if(root == NULL)  //边界点
@@ -118,9 +141,7 @@ int maxDepth(TreeNode *root){
 }
 /**************************************************************************************************
 4. 求二叉树中的节点个数
-递归解法：
-（1）如果二叉树为空，节点个数为0
-（2）如果二叉树不为空，二叉树节点个数 = 左子树节点个数 + 右子树节点个数 + 1
+
  * ************************************************************************************************/
 int GetNodeNum(TreeNode * pRoot) 
 { 
@@ -145,8 +166,6 @@ void PreOrderTraverse(TreeNode * pRoot)
 
 /**************************************************************************************************
 6.中序遍历递归解法
-（1）如果二叉树为空，空操作。
-（2）如果二叉树不为空，中序遍历左子树，访问根节点，中序遍历右子树
  *************************************************************************************************/
 void InOrderTraverse(TreeNode * pRoot) 
 { 
@@ -158,8 +177,6 @@ void InOrderTraverse(TreeNode * pRoot)
 }
 /**************************************************************************************************
 7.后序遍历递归解法
-（1）如果二叉树为空，空操作
-（2）如果二叉树不为空，后序遍历左子树，后序遍历右子树，访问根节点
  *************************************************************************************************/
 void PostOrderTraverse(TreeNode * pRoot) 
 { 
@@ -171,7 +188,6 @@ void PostOrderTraverse(TreeNode * pRoot)
 }
 /**********************************************************************************************************
 8.分层遍历二叉树，反转
-
 **********************************************************************************************************/
 vector<vector<int> > relevelOrder(TreeNode * root){
     cout << "relevelOrder" << endl;
@@ -202,39 +218,43 @@ vector<vector<int> > relevelOrder(TreeNode * root){
 
 **********************************************************************************************************/
 //广度优先遍历，用一个 bool 记录是从左到右还是从右到左，每一层结束就翻转一下   
-vector<vector<int> > ziglevelOrder(TreeNode * root){
-    cout << "ziglevelOrder" << endl;
-    vector<vector<int>> result;
-    if(root == nullptr) return result;
-    queue<TreeNode*> q;
-    bool left_to_right = true;
-    vector<int> level;
-    q.push(root);
-    q.push(nullptr);            // 用来分割层
-    while(!q.empty()){
-        TreeNode * cur = q.front();
-        q.pop();
-        if(cur){                // 当前层还没处理完
-            level.push_back(cur->val);
-            if(cur->left)  q.push(cur->left);
-            if(cur->right) q.push(cur->right);
-        }else{
-            if(left_to_right){   //当cur为空时，当前层结束处理，要调整顺序了
-                result.push_back(level);
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> result;
+        if(root == nullptr)  return result;
+        queue<TreeNode *> current;
+        bool left_to_right = true;
+        vector<int>level;
+        current.push(root);
+        current.push(nullptr);
+        while(!current.empty()){
+            TreeNode * temp = current.front();
+            current.pop();
+            if(temp){
+                level.push_back(temp->val);
+                if(temp->left != nullptr) current.push(temp->left);
+                if(temp->right!=nullptr) current.push(temp->right);
             }else{
-                reverse(level.begin(),level.end());
-                result.push_back(level);
+                if(left_to_right){
+                    result.push_back(level);
+                }
+                else{
+                    reverse(level.begin(),level.end());
+                    result.push_back(level);
+                }
+                level.clear();
+                left_to_right = !left_to_right;
+                if(current.size() > 0) current.push(nullptr);
             }
-            level.clear();
-            left_to_right = !left_to_right;
-            if(q.size() > 0) q.push(nullptr); //如果此时队列中还有元素，那么加分隔符
-        }    
+            
+        }
+        return result;
     }
-    return result;
-}
+};
+// 单队列加标记翻转位置
 /**********************************************************************************************************
 10.path路径和
-
 **********************************************************************************************************/
 bool hasPath(TreeNode *root, int sum){
     if(!root) return false;
@@ -242,10 +262,8 @@ bool hasPath(TreeNode *root, int sum){
         return sum == root->val;//结束条件，叶子节点   只有到了叶子节点才会去判断结果
     return hasPath(root->left, sum - root->val) || hasPath(root->right, sum - root->val);
 }
-
 /**********************************************************************************************************
 11.path路径和 -- 求具体的路径
-
 **********************************************************************************************************/
 class Solution{
 public:
@@ -268,9 +286,7 @@ private:
         pathSum(root->right, target - root->val, cur ,result);
         cur.pop_back();
     }
-
 };
-
 /**********************************************************************************************************
 12. 给定中序和后序遍历重建二叉树
     vector<int> preorder = {5,9,67,32};
@@ -444,6 +460,47 @@ public:
         }
     }
 };
+//129. Sum Root to Leaf Numbers   // 递归深度搜索
+class Solution {
+public:
+    int sumNumbers(TreeNode* root) {
+        int result = dfs(root, 0);
+        return result;    
+    }
+    int dfs(TreeNode* root, int sum ){
+         if(!root)  return 0;
+         if(root->left == NULL && root->right == NULL)
+             return sum * 10 + root->val;             
+         return dfs(root->left,sum * 10 + root->val) + dfs(root->right, sum * 10 + root->val);    
+    }
+};
+//124. Binary Tree Maximum Path Sum
+class Solution {
+public:
+    int maxPathSum(TreeNode* root) {
+        //注意，最后 return 的时候，只返回一个方向上的值，为什么？这是因为在递归中，只能向父节
+        //点返回，不可能存在 L->root->R 的路径，只可能是 L->root 或 R->root。
+        max_sum = INT32_MIN;
+        if(!root) return 0;
+        dfs(root);
+        return max_sum;
+    }
+    int dfs(const TreeNode* root){
+        if(!root) return 0;      
+        int l = dfs(root->left);
+        int r = dfs(root->right);
+        int sum = root->val;
+        if(l > 0) sum = sum + l;
+        if(r > 0) sum = sum + r;
+        max_sum = max(max_sum , sum);  // L->root->R 
+        return max(l, r) > 0 ? max(l ,r) + root->val : root->val;
+    }
+public:
+    int max_sum;
+};
+
+
+
 
 #if 0
 class SolutionBuildTreeB {

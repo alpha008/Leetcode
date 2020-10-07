@@ -21,15 +21,15 @@ Given a string containing just the characters ’(’, ’)’, ’{’, ’}’
 bool isValid(string const &s){
     string left = "([{";
     string right = ")]}";
-    stack<char> stk;
+    stack<char> stk;// 栈    自动推导类型  auto
     for(auto c : s){
-        if(left.find(c) != string::npos){
+        if(left.find(c) != string::npos){ // string没找到是会返回string::npos
             stk.push(c);
         }else{
             if(stk.empty() || stk.top() != left[right.find(c)])
                 return false;
             else
-                stk.pop();
+                stk.pop();   
         }
     }
     return stk.empty();
@@ -41,7 +41,6 @@ parentheses substring.
 For ”(()”, the longest valid parentheses substring is ”()”, which has length = 2.
 Another example is ”)()())”, where the longest valid parentheses substring is ”()()”, which has length = 4.
 **********************************************************************************************************/
-
 int longestValidParentheses(string s){
     int res = 0, start = 0, n = s.size();
     stack<int > st;
@@ -59,6 +58,26 @@ int longestValidParentheses(string s){
     }
     return res;
 }
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int res = 0, start = 0, n = s.size();
+        stack<int> st;
+        for(int i = 0;  i < n ;i ++){
+            if(s[i] == '('){
+                st.push(i);
+            }else if(s[i] == ')'){
+                if(st.empty()){
+                    start = i + 1;
+                }else{
+                    st.pop();
+                    res = st.empty() ? max(res, i -start + 1) : max(res , i - st.top());
+                }
+            }
+        }
+        return res;
+    }
+};
 int main()
 {
     //1. 判断输入的括号是否有效

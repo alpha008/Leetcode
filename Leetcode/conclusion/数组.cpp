@@ -245,10 +245,6 @@ vector<vector<int> > threeSumCloest(vector<int>& nums,int target){
 描述 按顺序排好的数组，找到插入的位置
 Here are few examples.
     [1,3,5,6], 5 → 2
-    [1,3,5,6], 2 → 1
-    [1,3,5,6], 7 → 4
-    [1,3,5,6], 0 → 0
-分析
 即 std::lower_bound()
 **********************************************************************************************************/
 int searchInsert(vector<int>nums,int target){
@@ -367,7 +363,7 @@ public:
         return {};
     }
 };
-66. Plus One
+//66. Plus One
 class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {
@@ -402,7 +398,6 @@ public:
 题目要求找到开始的索引和结束索引，所以就是C++的lower_bound和upper_bound。代码我觉得应该是要背下来的，
 这两个函数只有一点不同，就是nums[mid]与target的判断，lower_bound倾向于找左边的元素，所以只有nums[mid] >= target时才移动左指针；
 而upper_bound倾向于找右边的元素，所以当nums[mid] <= target就向右移动左指针了。
-
 lower_bound返回的是开始的第一个满足条件的位置，而upper_bound返回的是第一个不满足条件的位置。所以，当两个相等的时候代表没有找到，
 如果找到了的话，需要返回的是[left, right - 1].
 */

@@ -177,6 +177,127 @@ void* my_memcpy(void* dst,const void*src,size_t count)
         return dst;
     }
 }
+//344. Reverse String
+class Solution {
+public:
+    void reverseString(vector<char>& s) {
+     //  reverse(s.begin(),s.end());
+        int left = 0, right = (int)s.size() - 1;
+        while (left < right) {
+            char t = s[left];
+            s[left++] = s[right];
+            s[right--] = t;
+        }
+    }
+};
+//125. Valid Palindrome
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        transform(s.begin(), s.end(), s.begin(),::tolower);
+        auto left = s.begin(), right = prev(s.end());
+        while(left < right){
+            if(!::isalpha(*left))  left ++;
+            else if(!::isalpha(*right)) right --;
+            else if(*left++ != *right--) return false;
+        }
+    }
+};
+//tolower  isalnum  
+class Solution {
+public:
+    bool isPalindrome(string s) {
+          int l = 0, r = s.size() - 1;
+            while(l <= r){
+                while(!isalnum(s[l]) && l < r) l++;
+                while(!isalnum(s[r]) && l < r) r--;
+                if(tolower(s[l]) != tolower(s[r])) return false;
+                l++, r--;
+            }
+            return true;
+        #if 0
+        transform(s.begin(), s.end(), s.begin(), ::tolower);
+        auto left = s.begin(), right = prev(s.end());
+        while (left < right) {
+            if (!::isalnum(*left)) ++left;
+            else if (!::isalnum(*right)) --right;
+            else if (*left != *right) return false;
+
+        }
+        return true;
+        #endif
+    }
+};
+class Solution {
+public:
+string longestPalindrome(string s) {
+        const int n = s.size();
+        bool dp[n][n];
+        fill_n(&dp[0][0], n * n, false);
+        // 用 vector 会超时
+        //vector<vector<bool> > f(n, vector<bool>(n, false));
+        size_t max_len = 1, start = 0; // 最长回文子串的长度，起点
+        for (size_t i = 0; i < s.size(); i++) {
+            dp[i][i] = true;
+            for (size_t j = 0; j < i; j++) { // [j, i]
+                dp[j][i] = (s[j] == s[i] && (i - j < 2 || dp[j + 1][i - 1]));
+                if (dp[j][i] && max_len < (i - j + 1)) {
+                    max_len = i - j + 1;
+                    start = j;
+                }
+            }
+        }
+        return s.substr(start, max_len);
+    }
+};
+
+
+//3. Longest Substring Without Repeating Characters
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        unordered_map<char,int> map;  //建立字符与该字符在s中最后出现的位置之间的映射
+        int left = -1; // 左边界，指向窗口的前一个位置
+        int result = 0; //长度
+        for(int i = 0;i < s.size(); i++){
+            //count:判断当前字符s[i]是否出现过
+            //map[s[i]]>left：如果当前遍历的字符出现过，并且在窗口内。
+            //map并不是窗口，而是记录字符字符与最后出现位置的下标之间的映射，left用来维护窗口
+            if(map.count(s[i]) && map[s[i]] > left){
+                left = map[s[i]];  
+            }// 如果没有出现过，那么就一直遍历下去
+            // 如果出现过，那么判断是否在窗口内，如果在，那么更新窗口左边界
+            map[s[i]]=i;
+            result = max(result, i-left);           
+        }
+        return result;
+    }
+};
+//5. Longest Palindromic Substring
+// 最长回文子串
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        const int n = s.size();
+        bool dp[n][n];
+        fill_n(&dp[0][0], n * n, false);
+
+        size_t max_len = 1, start = 0; // 最长回文子串的长度，起点
+        for (size_t i = 0; i < s.size(); i++) {
+            dp[i][i] = true;
+            for (size_t j = 0; j < i; j++) { // [j, i]
+                dp[j][i] = (s[j] == s[i] && (i - j < 2 || dp[j + 1][i - 1]));
+                if (dp[j][i] && max_len < (i - j + 1)) {
+                    max_len = i - j + 1;
+                    start = j;
+                }
+            }
+        }
+        return  max_len;
+    }
+};
+
+
 
 int main()
 {
