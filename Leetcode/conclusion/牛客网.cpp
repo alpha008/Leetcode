@@ -1,19 +1,17 @@
+#include<iostream>
+#include<stack>
+#include<vector>
+#include<map>
+using namespace std;
+#if 0
 牛客网题目：
 1.数组中重复的数字
 2.构建乘机数组
+#endif
 
-
-
-
-1.数组中重复的数字
+//1.数组中重复的数字
 class Solution {
 public:
-    // Parameters:
-    //        numbers:     an array of integers
-    //        length:      the length of array numbers
-    //        duplication: (Output) the duplicated number in the array number
-    // Return value:       true if the input is valid, and there are some duplications in the array number
-    //                     otherwise false
     bool duplicate(int numbers[], int length, int* duplication) {
         map<int,int> map1;
         for(int i = 0; i < length; i++)
@@ -29,7 +27,7 @@ public:
         return false;
     }
 };
-2.构建乘机数组
+//2.构建乘积数组
 class Solution {
 public:
     vector<int> multiply(const vector<int>& A) {
@@ -47,3 +45,9 @@ public:
         return B;
     }
 };
+
+void  main()
+{
+
+    system("pause");
+}

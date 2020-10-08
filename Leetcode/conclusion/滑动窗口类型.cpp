@@ -117,6 +117,7 @@ vector<int> maxSlidingWindow(vector<int>& nums, int k) {
     for(int i = 0; i< k; ++i)
     {
         //窗口不为空并且下标i表示的元素大于window尾部下标表示的元素，删除尾部下标，保证窗口的头部为最大值
+        
         while(!window.empty() && nums[i]>nums[window.back()])
             window.pop_back();
         window.push_back(i);//此时窗口的头部为最大值
@@ -131,16 +132,37 @@ vector<int> maxSlidingWindow(vector<int>& nums, int k) {
             window.pop_front();
             
         //2.窗口不为空并且下标i表示的元素大于window尾部下标表示的元素，删除尾部下标，保证窗口的头部为最大值
+        // 保证以当前元素结尾的窗口中，队首元素是最大的
         while(!window.empty() && nums[i]>nums[window.back()])
             window.pop_back();  
-        window.push_back(i);
+        window.push_back(i); // 把自己的值记录下来
         //3.将结果更新到结果集中，如果不大于也要记录下来，但是始终保持头部最大
         result.push_back(nums[window.front()]);//将窗口的最大值添加到result中
+
     }
     
     return result;
 }
+vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+    if(nums.size() == 0)
+        return nums;
+    vector<int> result;
+    deque<int> window;
+    for(int i = 0; i < nums.size(); i++)
+    {
+        while(!window.empty() && nums[i] > nums[window.back()]) {
+            window.pop_back();
+        }
+        window.push_back(i);  //将自己加入队列要排名次
 
+        if(!window.empty() && window.front() <= (i - k))   // 删除上一个窗口的
+            window.pop_front();
+
+        if(i >= k - 1)  //主要是为了约束刚开始k个元素组成的窗口
+            result.push_back(nums[window.front()]);
+    }
+    return result;
+}
 int main()
 {
     vector<int> result;
