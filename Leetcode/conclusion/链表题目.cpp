@@ -655,6 +655,118 @@ public:
     }
 };
 
+//92. Reverse Linked List II   // 将m -n 之间的结点翻转 
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int m, int n) {
+         if(head == NULL ) return NULL;
+         ListNode  dummy(-1);
+         dummy.next = head;
+         ListNode * prev_m ,*prev = &dummy;
+         for(int i =1; i <= n; i++){
+             if(i == m )  prev_m = prev;  
+             if(i > m && i <= n){
+                prev->next = head->next;    // 先构造尾部
+                head->next = prev_m->next;  // 构造头部
+                prev_m->next = head;        // 连接头部
+                head = prev;
+             }
+              prev = head;
+              head = head->next;
+         }
+         return dummy.next;   
+    }
+};
+//61. Rotate List
+class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if (head == NULL || k == 0)  return head;
+        int len = 1;
+        ListNode * p = head;
+        while(p->next){
+            len ++;
+            p = p->next;
+        }
+        k = len - k % len;
+        p->next = head;
+        for(int step = 0; step < k ; step++){
+            p = p->next;
+        }
+        head = p->next;
+        p->next = NULL;
+        return head;
+    }
+};
+//24. Swap Nodes in Pairs
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        if(head == NULL || head->next == NULL)  return NULL;
+        ListNode dummy(-1);
+        dummy.next = head;
+        for(ListNode *prev = &dummy,*cur = prev->next,*next = cur->next;
+        next; 
+        prev = cur,cur = cur->next,next = cur ? cur->next : NULL){
+            prev->next = next;
+            cur->next = next->next;
+            next->next = cur;
+        }
+        return dummy.next;
+    }
+    ListNode* swapPairs(ListNode* head) {
+        if(head == NULL || head->next == NULL)  return NULL;
+        ListNode * p = head;
+        while(p && p->next){
+            swap(p->val, p->next->val);
+            p = p->next->next;
+        }
+        return head;
+    }
+};
+
+
+class Node {
+public:
+    int val;
+    Node* next;
+    Node* random;
+    Node(int _val) {
+        val = _val;
+        next = NULL;
+        random = NULL;
+    }
+};
+
+//138. Copy List with Random Pointer
+class Solution {
+public:
+    Node* copyRandomList(Node* head) {
+        if (head == NULL) return NULL;
+        for (Node* cur = head; cur != NULL; ) {
+            Node* node = new Node(cur->val);
+            node->next = cur->next;
+            cur->next = node;
+            cur = node->next;
+        }
+        for (Node* cur = head; cur != NULL; ) {
+        if (cur->random != NULL)
+            cur->next->random = cur->random->next;
+            cur = cur->next->next;
+        }
+        // 分拆两个单链表
+        Node new_head(-1);
+        for (Node* cur = head, *new_cur = &new_head; cur != NULL; ) {
+            new_cur->next = cur->next;
+            new_cur = new_cur->next;
+            cur->next = cur->next->next;
+            cur = cur->next;
+        }
+        return new_head.next;
+    }
+};
+
+
 /*************************************************************************************************
  根据数组创建链表，头结点的数据域一般不使用
  *************************************************************************************************/
