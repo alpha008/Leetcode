@@ -1,4 +1,6 @@
 #include<iostream>
+#include<vector>
+#include<stack>
 using namespace std;
 
 class ListNode {
@@ -24,6 +26,7 @@ int calBitPc()
     #endif
     return num;
 }
+#if 0
 class Solution {
 public:
     int myAtoi(string s) {
@@ -51,9 +54,52 @@ public:
         return num*sign;
     }
 };
-#include<stack>
-int main()
-{
+#endif
+
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        /*快速排序
+        int start = 0, end = nums.size() - 1;
+        quick(nums, start , end);
+        return nums;**/
+        /*2. 归并排序*/
+        vector<int>temp(nums.size(), 0);
+        merge_sort(nums, temp, 0, nums.size()-1);
+        return nums;
+    }
+    void merge_sort(vector<int>&nums, vector<int>& temp, int start, int end){
+        int middle;
+        if(start >= end)
+            return ;
+        middle = start + (end - start ) /2;
+        merge_sort(nums, temp, start ,middle);
+        merge_sort(nums, temp , middle+1, end);
+        merge(nums, temp, start, middle, end);
+        
+    }
+    void merge(vector<int>&nums, vector<int>& temp, int start, int middle, int end){
+        int i = start , j = middle + 1, k = start;
+        while(i <= middle && j <= end){
+            if(nums[i] > nums[j]){
+                temp[k++] = nums[j++];
+            }else{
+                temp[k++] = nums[i++];
+            }
+        }
+        while(i <= middle ){
+            temp[k++] = nums[i++];
+        }
+        while(j <= end){
+            temp[k++] = nums[j++];
+        }
+        for(i = start; i <= end; i++){
+            nums[i] = temp[i];
+        }
+    }
+};  
+#if 0
+void test01(){
     //calBitPc();
     stack<int>s1;
     cout << "1" << s1.empty() <<endl;
@@ -65,5 +111,18 @@ int main()
     Solution aa;
     cout << "result:" << aa.myAtoi("1234");
     cout << "sizeof(ListNode) = " << sizeof(ListNode) << endl;
+
+}
+#endif
+int main()
+{
+    Solution aa;
+    vector<int> nums = {4,8,9,5,6};
+    aa.sortArray(nums);
+    cout << "aa"<<endl;
+    for (int i = 1;i < 5;i++ ){
+
+        cout << "i =  " << i <<endl;
+    }
     return 0;
 }

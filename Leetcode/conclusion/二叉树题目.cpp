@@ -498,6 +498,165 @@ public:
 public:
     int max_sum;
 };
+// 二叉树前序遍历
+//144. Binary Tree Preorder Traversal                            // 前序遍历
+class Solution {
+public:
+    vector<int> prevTraversal(TreeNode* root) {      
+        if(!root)  return {};
+        stack<TreeNode *> sk;
+        sk.push(root);
+        while(!sk.empty()){
+            TreeNode * temp = sk.top();   
+            sk.pop();
+            result.push_back(temp->val);      
+            if(temp->right!= NULL)
+                sk.push(temp->right);
+            if(temp->left != NULL)
+                sk.push(temp->left);
+        }
+        return result;
+    }
+//94. Binary Tree Inorder Traversal           //二叉树中序遍历
+// 中序遍历
+    vector<int> inorderTraversal(TreeNode* root) {     
+        if(!root)  return {};            
+        stack <TreeNode*> stack;
+        while (!stack.empty() || root != NULL) {
+            if (root != NULL) {
+                stack.push(root);
+                root = root->left;
+            } else {
+                root = stack.top();
+                stack.pop();
+                result.push_back(root->val);
+                root = root->right;
+            }
+        }
+        return result;
+    }
+//145. Binary Tree Postorder Traversal                           // 后序遍历
+    // 后续遍历
+    vector<int> postorderTraversal(TreeNode*root) {
+        if (root == NULL) 
+            return;
+        stack<TreeNode*> s1 ;
+        stack<TreeNode*> s2 ;
+        s1.push(root);
+
+        while (!s1.empty()) {
+            root = s1.top();
+            s1.pop();
+            s2.push(root);
+            if (root->left != NULL) {
+                s1.push(root->left);
+            }
+            if (root->right != NULL) {
+                s1.push(root->right);
+            }
+        }
+        while (!s2.empty()) {
+            TreeNode *temp  = s2.top();
+            s2.pop();
+            result.push_back(temp->val);
+        }
+        return result;
+    }
+    vector<int> result;
+};
+
+//429 convert binary tree to double list 
+class Solution {
+public:
+    TreeNode * Convert(TreeNode * root){
+            if(root == NULL) return ;
+            if(root->left == NULL && root->right == NULL)
+                return root;
+            TreeNode * left = Convert(root->left);
+            TreeNode * cur = left;
+            while(cur!= NULL && cur->right !=NULL){
+                cur = cur->right;
+            }
+            if(left != NULL){
+                cur->right = root;
+                root->left = cur;
+            }
+            TreeNode * right = Convert(root->right);
+            if(right!=NULL){
+                root->right = right;
+                right->left = root;
+            }
+            return left != NULL ? left : root;
+    }
+};
+// 110. Balanced Binary Tree
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        return balancedHeight(root) >=0;
+    }
+    int balancedHeight(TreeNode* root){
+        if(root == NULL) return 0;
+        int left = balancedHeight(root->left);
+        int right = balancedHeight(root->right);
+        if(left < 0 || right < 0 || abs(left - right) > 1)
+            return -1;  // left 、right <0 是因为剪纸造成的
+        return max(left , right ) + 1;
+    }
+};
+// 如果没有那么就变成求树的最大深度了
+// 114. Flatten Binary Tree to Linked List
+class Solution {
+public:
+// 迭代版  前序遍历刚好符合这种性质
+    void flatten(TreeNode* root) {
+        if (root == nullptr) return;
+        stack<TreeNode*> s;
+        s.push(root);
+        while (!s.empty()) {
+            auto p = s.top();
+            s.pop();
+            if (p->right)
+                s.push(p->right);
+            if (p->left)
+                s.push(p->left);
+            p->left = nullptr;
+            if (!s.empty())
+                p->right = s.top();
+        }
+    }
+// 递归版本
+    void flatten(TreeNode* root) {
+        if(root == NULL) return ;
+        flatten(root->left);
+        flatten(root->right);
+        if(root->left == NULL) return ;
+
+        TreeNode * p = root->left;
+        while(p->right!= NULL)
+            p = p->right;   //左边链表最后一个节点与根节点的右节点相对接
+        p->right = root->right;
+        root->right = root->left;
+        root->left = NULL;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
