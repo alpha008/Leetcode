@@ -1,24 +1,31 @@
-﻿生成启动时间为 10/3/2020 10:02:19 PM。
+﻿生成启动时间为 10/4/2020 2:55:36 PM。
      1>项目“E:\腾讯云ftp\leetcode_test\Leetcode\CCplusplus\cplusplus\cplusplus\cplusplus.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         D:\code_tool\vs2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt map.cpp
-         map.cpp
+         D:\code_tool\vs2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt "类模版.cpp"
+         类模版.cpp
+     1>e:\腾讯云ftp\leetcode_test\leetcode\ccplusplus\cplusplus\cplusplus\类模版.cpp(50): warning C4018: “<”: 有符号/无符号不匹配
+     1>e:\腾讯云ftp\leetcode_test\leetcode\ccplusplus\cplusplus\cplusplus\类模版.cpp(51): warning C4018: “<”: 有符号/无符号不匹配
        Link:
          D:\code_tool\vs2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\腾讯云ftp\leetcode_test\Leetcode\CCplusplus\cplusplus\Debug\cplusplus.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\腾讯云ftp\leetcode_test\Leetcode\CCplusplus\cplusplus\Debug\cplusplus.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\腾讯云ftp\leetcode_test\Leetcode\CCplusplus\cplusplus\Debug\cplusplus.lib" /MACHINE:X86 Debug\deque.obj
          Debug\list.obj
          Debug\map.obj
+         Debug\multimap.obj
          Debug\pair.obj
          Debug\queue.obj
          Debug\set.obj
+         Debug\shared_ptr.obj
          Debug\stack.obj
          Debug\STL.obj
          Debug\string.obj
          Debug\vector.obj
+         "Debug\函数对象.obj"
+         Debug\unique_ptr.obj
          "Debug\模板编译原理.obj"
          "Debug\模版.obj"
+         "Debug\类模版.obj"
          cplusplus.vcxproj -> E:\腾讯云ftp\leetcode_test\Leetcode\CCplusplus\cplusplus\Debug\cplusplus.exe
      1>已完成生成项目“E:\腾讯云ftp\leetcode_test\Leetcode\CCplusplus\cplusplus\cplusplus\cplusplus.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:03.00
+已用时间 00:00:01.04

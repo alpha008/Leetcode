@@ -10,9 +10,10 @@
 #include<algorithm>
 using namespace std;
 
-
+#if 0
 void main()
 {
 
 	system("pause");
 }
+#endif

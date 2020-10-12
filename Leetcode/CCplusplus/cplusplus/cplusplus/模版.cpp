@@ -1,6 +1,6 @@
 #include<iostream>
 #include<string>
-#if 0
+#include<vector>
 using namespace std;
 #if 0
 void MySwap(int &a,int &b){
@@ -13,9 +13,9 @@ void MySwap(double &a, double &b){
 	a = b;
 	b = temp;
 }
-#endif
+#elif 0
 //模板技术，类型参数化
-//模板不允许类型自动转换
+//模板不允许类型自动转换  类型参数化
 template<class T> //template<typename T>
 void MySwap(T &a, T&b)
 { //类型会自动推导
@@ -60,9 +60,15 @@ void test01()
 	double d3 = 2.4;
 	MySwap<double>(d1, d3);
 	cout << "d1= " << d1 << "  d3 = " << d3 << endl;
+	// 显示调用
+	Myadd<int>(a,b);
+	//模版有严格的类型匹配
 }
+// 函数模版可以像普通函数那样被重载
+// 
 void main()
 {
+
 	test02();
 	system("pause");
 }

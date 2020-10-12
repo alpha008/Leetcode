@@ -71,13 +71,16 @@
     <ClCompile Include="pair.cpp" />
     <ClCompile Include="queue.cpp" />
     <ClCompile Include="set.cpp" />
+    <ClCompile Include="shared_ptr.cpp" />
     <ClCompile Include="stack.cpp" />
     <ClCompile Include="STL.cpp" />
     <ClCompile Include="string.cpp" />
     <ClCompile Include="vector.cpp" />
     <ClCompile Include="函数对象.cpp" />
+    <ClCompile Include="unique_ptr.cpp" />
     <ClCompile Include="模板编译原理.cpp" />
     <ClCompile Include="模版.cpp" />
+    <ClCompile Include="类模版.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
