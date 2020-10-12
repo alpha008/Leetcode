@@ -69,16 +69,20 @@ leetcode
 
 8.滑动窗口
 76. Minimum Window Substring
-239. Sliding Window Maximum
-
+239. Sliding Window Maximum         //维护一个双端队列，保持以当前下标结尾的，最大优先队列
 
 9.排序
 41. First Missing Positive   //桶排序
 912. Sort an Array
 
 
-239. Sliding Window Maximum         //维护一个双端队列，保持以当前下标结尾的，最大优先队列
 剑指offer
-1.
+
+剑指 Offer 03. 数组中重复的数字 LCOF
+
+
+
+
+
 
 
