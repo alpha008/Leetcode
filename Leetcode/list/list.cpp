@@ -370,7 +370,7 @@ public:
     }
 };
 //14. 删除倒数第k个结点
-class Solution {
+class Solution14 {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
         if(!head) return NULL;
@@ -395,7 +395,7 @@ public:
 };
 
 //15合并两个有序链表
-class Solution {
+class Solution15 {
 public:
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
         ListNode  head(-1);
@@ -416,7 +416,7 @@ public:
     }
 };
 //16.删除链表中重复结点
-class Solution {
+class Solution16 {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
         if(head == NULL) return NULL;
@@ -435,7 +435,7 @@ public:
 //17. 删除链表中重复结点，不允许重复
 // 删除节点时，当前cur设置了标记位，当删除重复的节点后，还要判断该结点是否为空
 // 然后继续遍历
-class Solution {
+class Solution17 {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
         if(!head) return NULL;
@@ -466,7 +466,7 @@ public:
 //18. 147. Insertion Sort List  //插入法排序将链表排序
 //  1 --- 0 --- 0 --- 0 --- 0
 // prev  head   cur
-class Solution {
+class Solution18 {
 public:
     ListNode* insertionSortList(ListNode* head) {
         ListNode *newhead = new ListNode(-1);
@@ -484,7 +484,7 @@ public:
     }
 };
 //141. Linked List Cycle  判断链表是否有环
-class Solution {
+class Solution141 {
 public:
     bool hasCycle(ListNode *head) {
         if(!head) return false;
@@ -504,7 +504,7 @@ public:
 
 };
 //142. Linked List Cycle II
-class Solution {
+class Solution142 {
 public:
     ListNode *detectCycle(ListNode *head) {
         if(head == NULL || head->next ==NULL ) return NULL;
@@ -527,7 +527,7 @@ public:
     }
 };
 //160. Intersection of Two Linked Lists 求两个链表相交的点
-class Solution {
+class Solution160 {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
        if(headA == NULL || headB == NULL) return NULL;
@@ -566,7 +566,7 @@ public:
 };
 //445. Add Two Numbers II
 // 头插法
-class Solution {
+class Solution445 {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         stack<int> s1, s2;
@@ -594,7 +594,7 @@ public:
 };
 //203. Remove Linked List Elements
 //删除链表中某一元素
-class Solution {
+class Solution203 {
 public:
     ListNode* removeElements(ListNode* head, int val) {
         if(head==nullptr)return head;
@@ -613,7 +613,7 @@ public:
     }
 };
 //24. Swap Nodes in Pairs
-class Solution {
+class Solution24 {
 public:
     ListNode* swapPairs(ListNode* head) {
         ListNode *dummy = new ListNode(-1), *pre = dummy;
@@ -628,7 +628,7 @@ public:
         return dummy->next;
     }
 };
-class Solution {
+class Solution99 {
 public:
     int myAtoi(string str) {
         int i = 0;
@@ -656,7 +656,7 @@ public:
 };
 
 //92. Reverse Linked List II   // 将m -n 之间的结点翻转 
-class Solution {
+class Solution92 {
 public:
     ListNode* reverseBetween(ListNode* head, int m, int n) {
          if(head == NULL ) return NULL;
@@ -678,7 +678,7 @@ public:
     }
 };
 //61. Rotate List
-class Solution {
+class Solution61 {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
         if (head == NULL || k == 0)  return head;
@@ -699,7 +699,7 @@ public:
     }
 };
 //24. Swap Nodes in Pairs
-class Solution {
+class Solution241 {
 public:
     ListNode* swapPairs(ListNode* head) {
         if(head == NULL || head->next == NULL)  return NULL;
@@ -714,7 +714,7 @@ public:
         }
         return dummy.next;
     }
-    ListNode* swapPairs(ListNode* head) {
+    ListNode* swapPairs2(ListNode* head) {
         if(head == NULL || head->next == NULL)  return NULL;
         ListNode * p = head;
         while(p && p->next){
@@ -739,7 +739,7 @@ public:
 };
 
 //138. Copy List with Random Pointer
-class Solution {
+class Solution138 {
 public:
     Node* copyRandomList(Node* head) {
         if (head == NULL) return NULL;
