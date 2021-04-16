@@ -1,0 +1,88 @@
+题目记录:
+leetcode
+
+
+1.字符串：
+3. Longest Substring Without Repeating Characters // 最长不重复子串
+8. String to Integer (atoi)  //遍历更新，考虑溢出
+58. Length of Last Word  //标记更新
+67. Add Binary   //从后往前
+125. Valid Palindrome   // 使用栈缓存记录
+344. Reverse String   //快慢指针
+516. Longest Palindromic Subsequence // 使用栈缓存信息
+
+
+
+2.链表
+2. Add Two Numbers   从前往后
+19. Remove Nth Node From End of List  ，快慢指针
+21. Merge Two Sorted Lists   合并两个有序链表
+24. Swap Nodes in Pairs     // 交换链表中的结点  两个一组交换  边界处理重点
+61. Rotate List   // 旋转链表
+82. Remove Duplicates from Sorted List II   删除重复的链表结点不允许重复
+83. Remove Duplicates from Sorted List     //允许重复1次
+92. Reverse Linked List II   // 将m - n 之间的结点翻转
+138. Copy List with Random Pointer   //
+141. Linked List Cycle     //链表是否有环
+142. Linked List Cycle II  // 链表存在环，求交点
+147. Insertion Sort List  //插入法排序将链表排序
+148. Sort List    排序 
+160. Intersection of Two Linked Lists  单链表相交
+203. Remove Linked List Elements   // 删除链表中的节点
+445. Add Two Numbers II
+
+3.数组
+27. Remove Element      // 删除数组中的val
+34. Find First and Last Position of Element in Sorted Array  // 这个题目有个性  二分法查找边界， 上边界和下边界
+66. Plus One               // 前面加  后面加 数组和链表两种形式
+88. Merge Sorted Array  //合并两个有序数组
+912. Sort an Array   // 数组元素排序，  归并 快速 插入  冒泡
+
+4.二叉树
+     
+94. Binary Tree Inorder Traversal           //二叉树中序遍历
+101. Symmetric Tree   // 判断二叉树是否对称
+102. Binary Tree Level Order Traversal   // 层序遍历二叉树
+103. Binary Tree Zigzag Level Order Traversal  // 二叉树z字型遍历
+104. Maximum Depth of Binary Tree                              // 求二叉树最大深度
+105. Construct Binary Tree from Preorder and Inorder Traversal
+106. Construct Binary Tree from Inorder and Postorder Traversal
+110. Balanced Binary Tree                      // 判断二叉树是否为平衡树
+111. Minimum Depth of Binary Tree                              // 求二叉树最小深度
+112. Path Sum                                                  // 求二叉树路径和是否存在
+113. Path Sum II                                               // 求二叉树路径和存在并输出路径
+114. Flatten Binary Tree to Linked List    // 将二叉搜索树转换成链表 单
+124. Binary Tree Maximum Path Sum  // hard                     // 任意两个节点之间组成的最大和
+129. Sum Root to Leaf Numbers                                  // 递归深度搜索
+144. Binary Tree Preorder Traversal                            // 前序遍历
+145. Binary Tree Postorder Traversal                           // 后序遍历
+257. Binary Tree Paths                                         // 二叉树路径和
+429 convert binary tree to double list                         // 将二叉搜索树转换成双向链表
+863. All Nodes Distance K in Binary Tree  // 二叉树第k层结点个数
+
+
+
+6.堆栈
+20. Valid Parentheses               // 有效括号长度
+
+7.队列
+
+8.滑动窗口
+76. Minimum Window Substring
+239. Sliding Window Maximum         //维护一个双端队列，保持以当前下标结尾的，最大优先队列
+
+9.排序
+41. First Missing Positive   //桶排序
+912. Sort an Array
+
+
+剑指offer
+
+剑指 Offer 03. 数组中重复的数字 LCOF
+
+
+
+
+
+
+
